@@ -158,7 +158,7 @@ export function Navbar() {
                     href={link.href}
                     onClick={closeAll}
                     className={cn(
-                      "relative flex items-baseline gap-3 rounded-2xl px-4 py-3.5 text-[15px] font-medium transition-colors",
+                      "relative flex items-baseline gap-3 rounded-2xl px-4 py-3.5 text-[15px] font-semibold transition-colors",
                       active ? "text-white" : "text-white/80 hover:text-white"
                     )}
                   >

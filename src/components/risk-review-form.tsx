@@ -66,7 +66,7 @@ function buildMailto(form: FormState) {
   if (form.message.trim()) {
     lines.push("", "Notes:", form.message.trim());
   }
-  lines.push("", " - Sent from sayenti.co.uk/risk-review");
+  lines.push("", `- Sent from ${siteConfig.url.replace(/^https?:\/\//, "")}/risk-review`);
 
   const params = new URLSearchParams({
     subject,

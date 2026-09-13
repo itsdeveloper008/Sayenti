@@ -37,6 +37,9 @@ export function CTASection({
             >
               <Phone className="size-4" aria-hidden />
               {siteConfig.phone}
+              <span className="text-muted-foreground/70">
+                · {siteConfig.phoneLabel}
+              </span>
             </a>
           </div>
         </Reveal>

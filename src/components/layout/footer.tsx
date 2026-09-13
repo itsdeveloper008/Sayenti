@@ -70,6 +70,9 @@ export function Footer() {
               <a href={siteConfig.phoneHref} className="hover:text-foreground">
                 {siteConfig.phone}
               </a>
+              <span className="mt-0.5 block text-xs text-muted-foreground/80">
+                {siteConfig.phoneLabel}
+              </span>
             </li>
             <li>
               <a

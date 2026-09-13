@@ -5,10 +5,14 @@ export const siteConfig = {
     "UK Managed Security Service Provider delivering 24/7 monitoring, incident response, cloud migration, and high-speed connectivity for finance, healthcare, legal, and public sector.",
   /** Canonical site URL used for metadata / OG. Override with NEXT_PUBLIC_SITE_URL. */
   url: "https://sayenti.vercel.app",
-  phone: "+44 20 3890 7200",
-  phoneHref: "tel:+442038907200",
-  email: "hello@sayenti.co.uk",
-  address: "London, United Kingdom",
+  phone: "+44 (0) 7552631391",
+  phoneHref: "tel:+447552631391",
+  phoneLabel: "24/7 incident line",
+  email: "hello@sayenti.com",
+  address: "Sir Isaaks Walk, Colchester, CO1 1JJ",
+  addressLocality: "Colchester",
+  addressPostalCode: "CO1 1JJ",
+  addressCountry: "GB",
   social: {
     linkedin: "https://www.linkedin.com/company/sayenti",
   },

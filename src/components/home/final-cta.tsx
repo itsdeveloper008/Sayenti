@@ -95,7 +95,7 @@ export function FinalCtaSection() {
               )}
               <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
             </span>
-            24/7 {siteConfig.phone}
+            {siteConfig.phone} · {siteConfig.phoneLabel}
           </a>
 
           {/* Assurance row */}

@@ -94,8 +94,10 @@ const jsonLd = {
   email: siteConfig.email,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "London",
-    addressCountry: "GB",
+    streetAddress: "Sir Isaaks Walk",
+    addressLocality: siteConfig.addressLocality,
+    postalCode: siteConfig.addressPostalCode,
+    addressCountry: siteConfig.addressCountry,
   },
   areaServed: "GB",
   serviceType: [

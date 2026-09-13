@@ -219,7 +219,7 @@ export function Navbar() {
                 className="mt-1 inline-flex items-center justify-center gap-2 font-mono text-xs text-white/45"
               >
                 <span className="size-1.5 rounded-full bg-primary" aria-hidden />
-                24/7 {siteConfig.phone}
+                {siteConfig.phone} · {siteConfig.phoneLabel}
               </a>
             </div>
           </motion.div>
@@ -398,7 +398,7 @@ export function Navbar() {
                         className="inline-flex items-center gap-2 font-mono text-[11px] text-white/40 transition-colors hover:text-white"
                       >
                         <Phone className="size-3" aria-hidden />
-                        24/7 {siteConfig.phone}
+                        {siteConfig.phone} · {siteConfig.phoneLabel}
                       </a>
                       <Link
                         href="/services"

@@ -135,7 +135,7 @@ export default function RiskReviewPage() {
                     >
                       {siteConfig.phone}
                     </a>{" "}
-                   - answered 24/7.
+                    - {siteConfig.phoneLabel}.
                   </p>
                 </div>
               </div>

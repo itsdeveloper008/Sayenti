@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ISO/IEC 27001">
+  <title>ISO/IEC 27001</title>
+  <circle cx="60" cy="60" r="56" fill="none" stroke="#0A0A0A" stroke-width="3"/>
+  <circle cx="60" cy="60" r="48" fill="none" stroke="#0A0A0A" stroke-width="1.25"/>
+  <text x="60" y="48" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" fill="#0A0A0A" letter-spacing="0.08em">ISO</text>
+  <text x="60" y="68" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="700" fill="#0A0A0A">27001</text>
+  <text x="60" y="86" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="7" font-weight="500" fill="#6B7280" letter-spacing="0.14em">CERTIFIED</text>
+</svg>

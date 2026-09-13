@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sayenti
 
-## Getting Started
+Ultra-modern marketing site for Sayenti — a UK Managed Security Service Provider.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS v4 + shadcn/ui
+- Framer Motion
+- Firebase Firestore (risk review form)
+- lucide-react
+
+## Getting started
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.example` → `.env.local` and fill Firebase keys for production form submissions.
 
-## Learn More
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_FIREBASE_*` | Client Firebase config; writes to `riskReviews` collection |
+| `NEXT_PUBLIC_CALENDLY_URL` | Optional calendar embed on `/risk-review` |
 
-To learn more about Next.js, take a look at the following resources:
+Without Firebase env vars, the risk review form still validates and succeeds in development (submissions are logged to the console).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Firestore
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a collection `riskReviews` and allow authenticated/admin reads with create-only from the web, or use security rules appropriate for your project. Example create-only rule (tighten before production):
 
-## Deploy on Vercel
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /riskReviews/{id} {
+      allow create: if request.resource.data.keys().hasAll([
+        'name', 'company', 'email', 'phone', 'companySize', 'painPoint'
+      ]);
+      allow read, update, delete: if false;
+    }
+  }
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` — local development
+- `npm run build` — production build
+- `npm run start` — serve production build
+- `npm run lint` — ESLint
+
+## Site map
+
+- `/` — Homepage
+- `/about` · `/services` · `/services/[slug]` · `/approach` · `/partners` · `/clients` · `/clients/[slug]`
+- `/risk-review` — primary conversion form
+- `/privacy` · `/terms` — placeholder legal pages

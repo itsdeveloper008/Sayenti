@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { CheckCircle2, Loader2 } from "lucide-react";
-import { getDb, isFirebaseConfigured } from "@/lib/firebase";
+import { CheckCircle2, Loader2, Mail } from "lucide-react";
+import { siteConfig } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -52,6 +51,31 @@ const initial: FormState = {
   message: "",
 };
 
+function buildMailto(form: FormState) {
+  const subject = `Risk Review request — ${form.company}`;
+  const lines = [
+    "New risk review request from the website.",
+    "",
+    `Name: ${form.name}`,
+    `Company: ${form.company}`,
+    `Email: ${form.email}`,
+    `Phone: ${form.phone}`,
+    `Company size: ${form.companySize}`,
+    `Pain point: ${form.painPoint}`,
+  ];
+  if (form.message.trim()) {
+    lines.push("", "Notes:", form.message.trim());
+  }
+  lines.push("", "— Sent from sayenti.co.uk/risk-review");
+
+  const params = new URLSearchParams({
+    subject,
+    body: lines.join("\n"),
+  });
+
+  return `mailto:${siteConfig.email}?${params.toString()}`;
+}
+
 export function RiskReviewForm() {
   const [form, setForm] = useState<FormState>(initial);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
@@ -63,7 +87,7 @@ export function RiskReviewForm() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
-  async function onSubmit(e: FormEvent) {
+  function onSubmit(e: FormEvent) {
     e.preventDefault();
     setError("");
 
@@ -88,32 +112,14 @@ export function RiskReviewForm() {
 
     setStatus("loading");
 
-    try {
-      if (!isFirebaseConfigured()) {
-        // Dev / pre-Firebase fallback: accept locally so UX can be reviewed
-        await new Promise((r) => setTimeout(r, 600));
-        console.info("[risk-review] submission (Firebase not configured)", form);
-        setStatus("success");
-        setForm(initial);
-        return;
-      }
+    // No database — open the visitor's email client with a prefilled message.
+    const href = buildMailto(form);
+    window.location.href = href;
 
-      const db = getDb();
-      if (!db) throw new Error("Firestore unavailable");
-
-      await addDoc(collection(db, "riskReviews"), {
-        ...form,
-        createdAt: serverTimestamp(),
-        source: "website",
-      });
-
+    window.setTimeout(() => {
       setStatus("success");
       setForm(initial);
-    } catch (err) {
-      console.error(err);
-      setError("Something went wrong. Please call us or try again shortly.");
-      setStatus("error");
-    }
+    }, 400);
   }
 
   if (status === "success") {
@@ -121,21 +127,37 @@ export function RiskReviewForm() {
       <div className="rounded-2xl border border-black/[0.08] bg-black/[0.02] p-8 text-center">
         <CheckCircle2 className="mx-auto size-10 text-foreground" aria-hidden />
         <h3 className="mt-4 text-xl font-semibold text-foreground">
-          Request received
+          Email ready to send
         </h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          A Sayenti specialist will contact you within one business day to
-          schedule your 30-minute risk review. All details are treated as
-          confidential.
+          Your email app should open with the request filled in. Send it and a
+          Sayenti specialist will reply within one business day. Prefer not to
+          use mail? Call{" "}
+          <a
+            href={siteConfig.phoneHref}
+            className="font-medium text-foreground underline decoration-black/20 underline-offset-2 hover:decoration-black/50"
+          >
+            {siteConfig.phone}
+          </a>
+          .
         </p>
-        <Button
-          type="button"
-          variant="outline"
-          className="mt-6 border-border"
-          onClick={() => setStatus("idle")}
-        >
-          Submit another request
-        </Button>
+        <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <Button
+            type="button"
+            variant="outline"
+            className="border-border"
+            onClick={() => setStatus("idle")}
+          >
+            Edit details
+          </Button>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="inline-flex h-9 items-center gap-2 rounded-full border border-black/10 px-4 text-sm font-medium text-foreground hover:bg-white/60"
+          >
+            <Mail className="size-4" aria-hidden />
+            {siteConfig.email}
+          </a>
+        </div>
       </div>
     );
   }
@@ -263,7 +285,7 @@ export function RiskReviewForm() {
         {status === "loading" ? (
           <>
             <Loader2 className="size-4 animate-spin" aria-hidden />
-            Submitting…
+            Opening email…
           </>
         ) : (
           "Request Risk Review"
@@ -271,14 +293,8 @@ export function RiskReviewForm() {
       </Button>
 
       <p className="text-xs text-muted-foreground">
-        Confidential. No obligation. We never share your details with third
-        parties for marketing.
-        {!isFirebaseConfigured() && (
-          <span className="mt-1 block text-muted-foreground">
-            Firebase env vars not set — submissions are logged locally in
-            development.
-          </span>
-        )}
+        Opens your email app to message {siteConfig.email}. Nothing is stored on
+        this website. Confidential. No obligation.
       </p>
     </form>
   );

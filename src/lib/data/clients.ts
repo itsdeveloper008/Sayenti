@@ -40,7 +40,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     servicesUsed: ["Managed Security Services", "Cybersecurity"],
     quote: {
-      text: "Containment dropped from hours to under twenty minutes — and our auditors finally had continuous evidence, not quarterly theatre.",
+      text: "Containment dropped from hours to under twenty minutes - and our auditors finally had continuous evidence, not quarterly theatre.",
       role: "CISO, Regional UK Bank",
     },
   },

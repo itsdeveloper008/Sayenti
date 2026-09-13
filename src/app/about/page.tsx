@@ -8,14 +8,14 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Sayenti — a UK MSSP built for regulated industries, with a mission to make always-on defence operationally real.",
+    "Learn about Sayenti - a UK MSSP built for regulated industries, with a mission to make always-on defence operationally real.",
 };
 
 const principles = [
   {
     icon: Target,
     title: "Regulated focus",
-    body: "Finance, healthcare, legal, and public sector patterns — not generic SMB tooling.",
+    body: "Finance, healthcare, legal, and public sector patterns - not generic SMB tooling.",
   },
   {
     icon: Users,
@@ -95,7 +95,7 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About Us"
-        title="Built for the organisations that cannot afford downtime — or doubt."
+        title="Built for the organisations that cannot afford downtime - or doubt."
         description="Sayenti was founded to give mid-to-large UK organisations in regulated industries a security partner that operates with precision: monitoring that never sleeps, migrations that stay compliant, and reporting leadership can trust."
       />
 
@@ -110,7 +110,7 @@ export default function AboutPage() {
             <div className="space-y-4 leading-relaxed text-muted-foreground">
               <p>
                 Too many security programmes look strong on paper and fragile at
-                2am. We exist to close that gap — with people, process, and
+                2am. We exist to close that gap - with people, process, and
                 platforms tuned for regulated environments.
               </p>
               <p>
@@ -173,7 +173,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="Leadership"
             title="Operators, not slide-deck specialists"
-            description="The people accountable for your estate — reachable by name, not a ticket queue."
+            description="The people accountable for your estate - reachable by name, not a ticket queue."
           />
           <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {leaders.map((person) => (

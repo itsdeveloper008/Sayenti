@@ -42,7 +42,7 @@ export default function HomePage() {
                 Proof from industries that cannot gamble on uptime
               </h2>
               <p className="mt-4 text-muted-foreground leading-relaxed md:text-lg">
-                Finance, healthcare, legal, and public sector outcomes — measured,
+                Finance, healthcare, legal, and public sector outcomes - measured,
                 not marketed.
               </p>
             </div>
@@ -62,7 +62,7 @@ export default function HomePage() {
       <section className="section-space">
         <div className="container-page">
           <TestimonialBlock
-            quote="Containment dropped from hours to under twenty minutes — and our auditors finally had continuous evidence, not quarterly theatre."
+            quote="Containment dropped from hours to under twenty minutes - and our auditors finally had continuous evidence, not quarterly theatre."
             author="CISO"
             role="Regional UK Bank · Finance"
           />

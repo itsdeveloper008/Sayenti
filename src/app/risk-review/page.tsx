@@ -8,14 +8,14 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Book a Risk Review",
   description:
-    "Book a confidential 30-minute risk review with Sayenti. No obligation — a clear picture of your security, cloud, and connectivity exposure.",
+    "Book a confidential 30-minute risk review with Sayenti. No obligation - a clear picture of your security, cloud, and connectivity exposure.",
 };
 
 const assurances = [
   {
     icon: ShieldCheck,
     title: "No obligation",
-    body: "A structured conversation about exposure — not a hard sell.",
+    body: "A structured conversation about exposure - not a hard sell.",
   },
   {
     icon: Lock,
@@ -31,7 +31,7 @@ const agenda = [
   },
   {
     title: "The 30 minutes",
-    body: "Monitoring coverage, cloud posture, connectivity resilience, and assurance gaps — in that order.",
+    body: "Monitoring coverage, cloud posture, connectivity resilience, and assurance gaps - in that order.",
   },
   {
     title: "After the call",
@@ -47,7 +47,7 @@ export default function RiskReviewPage() {
       <PageHero
         eyebrow="Risk Review"
         title="Thirty minutes. A clearer picture of your risk."
-        description="Tell us about your environment. We'll come prepared with pointed questions — not a generic pitch deck."
+        description="Tell us about your environment. We'll come prepared with pointed questions - not a generic pitch deck."
       />
 
       <section className="container-page grid gap-12 pb-24 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16">
@@ -135,7 +135,7 @@ export default function RiskReviewPage() {
                     >
                       {siteConfig.phone}
                     </a>{" "}
-                    — answered 24/7.
+                   - answered 24/7.
                   </p>
                 </div>
               </div>

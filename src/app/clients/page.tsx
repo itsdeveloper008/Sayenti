@@ -15,7 +15,7 @@ export default function ClientsPage() {
       <PageHero
         eyebrow="Clients"
         title="Proof from regulated environments"
-        description="Filter by industry. Each engagement focuses on measurable risk reduction — containment, uptime, migration certainty, or assurance readiness."
+        description="Filter by industry. Each engagement focuses on measurable risk reduction - containment, uptime, migration certainty, or assurance readiness."
       />
       <section className="container-page pb-20 md:pb-28">
         <CaseStudyGrid />

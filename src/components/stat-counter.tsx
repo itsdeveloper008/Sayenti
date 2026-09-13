@@ -19,7 +19,7 @@ export type StatMetric = {
   label: string;
   suffix?: string;
   prefix?: string;
-  /** Evocative ring fill 0–1 */
+  /** Evocative ring fill 0-1 */
   fill?: number;
   /** Red accent arc for the hero stat */
   hero?: boolean;

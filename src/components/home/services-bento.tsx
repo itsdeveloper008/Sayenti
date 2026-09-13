@@ -25,7 +25,7 @@ export function ServicesBento() {
               Layers of a living security estate
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed md:text-lg">
-              Each capability is an interactive system — not a brochure card.
+              Each capability is an interactive system - not a brochure card.
             </p>
           </div>
         </ScrollReveal>

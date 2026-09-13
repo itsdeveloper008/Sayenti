@@ -251,7 +251,7 @@ export function Navbar() {
             <Logo size={scrolled ? "sm" : "md"} priority />
           </Link>
 
-          {/* 2. Primary nav — desktop */}
+          {/* 2. Primary nav - desktop */}
           <div
             className="absolute top-0 left-1/2 hidden -translate-x-1/2 lg:block"
             onPointerLeave={() => setHovered(null)}
@@ -418,7 +418,7 @@ export function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* 3. Actions — desktop */}
+          {/* 3. Actions - desktop */}
           <div
             className={cn(
               "hidden items-center gap-1.5 px-1.5 transition-[height] duration-300 ease-out lg:flex",

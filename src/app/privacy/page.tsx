@@ -47,7 +47,7 @@ const sections: LegalSection[] = [
         This website does not store form submissions in a database. The risk
         review form opens your email client with a prefilled message to{" "}
         {siteConfig.email}. Once you send it, the message is handled like any
-        other email in our inbox — accessible only to authorised{" "}
+        other email in our inbox - accessible only to authorised{" "}
         {siteConfig.name} personnel who need it to respond.
       </p>
     ),

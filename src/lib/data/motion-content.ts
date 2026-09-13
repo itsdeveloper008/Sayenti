@@ -4,7 +4,7 @@ export const homepageMetrics = [
     value: 11,
     suffix: " min",
     prefix: "",
-    /** Evocative ring fill 0–1 (not literal %) */
+    /** Evocative ring fill 0-1 (not literal %) */
     fill: 0.88,
     hero: true,
   },

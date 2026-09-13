@@ -9,7 +9,7 @@ type InteractiveCardProps = {
   contentClassName?: string;
 };
 
-/** Flat premium card — lift only, no 3D tilt. */
+/** Flat premium card - lift only, no 3D tilt. */
 export function InteractiveCard({
   children,
   className,

@@ -8,7 +8,7 @@ import {
 } from "@/hooks/use-motion-prefs";
 import { lerp } from "@/hooks/use-pointer";
 
-/** Lightweight value noise — no external deps */
+/** Lightweight value noise - no external deps */
 function hash(n: number) {
   const x = Math.sin(n * 127.1) * 43758.5453;
   return x - Math.floor(x);
@@ -50,7 +50,7 @@ type Ribbon = {
 };
 
 /**
- * Soft silk/ribbon flow field — pure grayscale, 2D canvas only.
+ * Soft silk/ribbon flow field - pure grayscale, 2D canvas only.
  * Lazy-load this component so it never blocks LCP.
  */
 export function HeroSilkRibbons({ className }: { className?: string }) {
@@ -139,7 +139,7 @@ export function HeroSilkRibbons({ className }: { className?: string }) {
       }
       ctx.closePath();
 
-      // Pure grayscale — no color tint
+      // Pure grayscale - no color tint
       const grad = ctx.createLinearGradient(0, 0, w, h * 0.6);
       grad.addColorStop(0, `rgba(255,255,255,${r.alpha * 0.5})`);
       grad.addColorStop(0.4, `rgba(245,245,245,${r.alpha})`);

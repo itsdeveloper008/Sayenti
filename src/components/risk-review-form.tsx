@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/select";
 
 const companySizes = [
-  "50–199 employees",
-  "200–999 employees",
-  "1,000–4,999 employees",
+  "50-199 employees",
+  "200-999 employees",
+  "1,000-4,999 employees",
   "5,000+ employees",
 ];
 
@@ -52,7 +52,7 @@ const initial: FormState = {
 };
 
 function buildMailto(form: FormState) {
-  const subject = `Risk Review request — ${form.company}`;
+  const subject = `Risk Review request - ${form.company}`;
   const lines = [
     "New risk review request from the website.",
     "",
@@ -66,7 +66,7 @@ function buildMailto(form: FormState) {
   if (form.message.trim()) {
     lines.push("", "Notes:", form.message.trim());
   }
-  lines.push("", "— Sent from sayenti.co.uk/risk-review");
+  lines.push("", " - Sent from sayenti.co.uk/risk-review");
 
   const params = new URLSearchParams({
     subject,
@@ -112,7 +112,7 @@ export function RiskReviewForm() {
 
     setStatus("loading");
 
-    // No database — open the visitor's email client with a prefilled message.
+    // No database - open the visitor's email client with a prefilled message.
     const href = buildMailto(form);
     window.location.href = href;
 

@@ -10,14 +10,14 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Approach",
   description:
-    "Sayenti's methodology: assess, architect, operate, and report — with clear SLAs, tooling, and reporting cadence for regulated organisations.",
+    "Sayenti's methodology: assess, architect, operate, and report - with clear SLAs, tooling, and reporting cadence for regulated organisations.",
 };
 
 const details = [
   {
     icon: Wrench,
     title: "Tooling",
-    body: "We integrate best-of-breed detection, identity, and network platforms — selected for your stack, not ours. Prefer what you already own when it meets the control bar.",
+    body: "We integrate best-of-breed detection, identity, and network platforms - selected for your stack, not ours. Prefer what you already own when it meets the control bar.",
   },
   {
     icon: FileText,
@@ -27,7 +27,7 @@ const details = [
   {
     icon: Gauge,
     title: "SLAs",
-    body: "Published response and containment targets with named escalation paths. Availability and detection coverage measured — not assumed.",
+    body: "Published response and containment targets with named escalation paths. Availability and detection coverage measured - not assumed.",
   },
 ];
 
@@ -69,7 +69,7 @@ export default function ApproachPage() {
     <>
       <PageHero
         eyebrow="Approach"
-        title="A methodology auditors recognise — and operators can run."
+        title="A methodology auditors recognise - and operators can run."
         description="From first assessment to ongoing SOC operations, every step produces evidence, ownership, and measurable risk reduction."
       />
 
@@ -162,7 +162,7 @@ export default function ApproachPage() {
           </div>
         </Reveal>
         <p className="mt-4 text-xs text-muted-foreground">
-          Indicative targets — final SLAs are agreed per engagement and
+          Indicative targets - final SLAs are agreed per engagement and
           documented in the service schedule.
         </p>
       </section>

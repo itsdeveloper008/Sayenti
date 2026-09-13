@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Intentional dark "spotlight" section — deliberate break from the light theme.
+ * Intentional dark "spotlight" section - deliberate break from the light theme.
  * Do not restyle to match surrounding light sections without product design review.
  */
 
@@ -85,7 +85,7 @@ export function ServicesSpotlightCarousel() {
       aria-roledescription="carousel"
       aria-label="Our services"
     >
-      {/* Grain — depth on non-flat black */}
+      {/* Grain - depth on non-flat black */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.045] mix-blend-overlay"
         style={{
@@ -105,7 +105,7 @@ export function ServicesSpotlightCarousel() {
       </div>
 
       <div ref={trackRef} className="relative mx-auto max-w-[1400px]">
-        {/* Fixed red spotlight — stays centered under the active (center) card */}
+        {/* Fixed red spotlight - stays centered under the active (center) card */}
         <motion.div
           aria-hidden
           className="pointer-events-none absolute bottom-0 left-1/2 z-0 h-[70%] w-[min(280px,40vw)] -translate-x-1/2"

@@ -47,7 +47,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-black/[0.07] bg-slate-200/70 shadow-[0_22px_60px_rgb(10_10_10_/_0.1)]">
             <Image
               src={study.image}
-              alt={`${study.client} — ${study.industry}`}
+              alt={`${study.client} - ${study.industry}`}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 1152px"
@@ -121,7 +121,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16">
           <Reveal>
             <p className="font-mono text-[10px] tracking-[0.2em] text-primary uppercase">
-              01 — The challenge
+              01 - The challenge
             </p>
             <h2 className="mt-4 text-2xl font-semibold tracking-tight text-foreground sm:text-[1.75rem]">
               What was breaking
@@ -136,7 +136,7 @@ export default async function CaseStudyPage({ params }: Props) {
             className="lg:border-l lg:border-black/[0.07] lg:pl-16"
           >
             <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-              02 — The response
+              02 - The response
             </p>
             <h2 className="mt-4 text-2xl font-semibold tracking-tight text-foreground sm:text-[1.75rem]">
               What we built

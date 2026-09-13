@@ -16,8 +16,8 @@ type Step = {
 };
 
 const STEP_META: { meta: string; icon: LucideIcon }[] = [
-  { meta: "Week 1–2", icon: Search },
-  { meta: "Week 3–5", icon: Layers },
+  { meta: "Week 1-2", icon: Search },
+  { meta: "Week 3-5", icon: Layers },
   { meta: "Ongoing", icon: Activity },
   { meta: "Minutes", icon: Zap },
 ];
@@ -106,12 +106,12 @@ export function ProcessJourney() {
             From risk to resilience.
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed md:text-lg">
-            Four phases, one continuous engagement — each with named ownership
+            Four phases, one continuous engagement - each with named ownership
             and evidence you can hand to an auditor.
           </p>
         </div>
 
-        {/* Desktop — alternating journey rail */}
+        {/* Desktop - alternating journey rail */}
         <div className="relative mt-20 hidden lg:block">
           {/* Rail */}
           <div
@@ -201,7 +201,7 @@ export function ProcessJourney() {
           </div>
         </div>
 
-        {/* Mobile / tablet — vertical timeline */}
+        {/* Mobile / tablet - vertical timeline */}
         <div className="relative mt-14 lg:hidden">
           <span
             aria-hidden

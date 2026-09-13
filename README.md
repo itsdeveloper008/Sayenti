@@ -1,6 +1,6 @@
 # Sayenti
 
-Ultra-modern marketing site for Sayenti — a UK Managed Security Service Provider.
+Ultra-modern marketing site for Sayenti - a UK Managed Security Service Provider.
 
 ## Stack
 
@@ -51,14 +51,14 @@ service cloud.firestore {
 
 ## Scripts
 
-- `npm run dev` — local development
-- `npm run build` — production build
-- `npm run start` — serve production build
-- `npm run lint` — ESLint
+- `npm run dev` - local development
+- `npm run build` - production build
+- `npm run start` - serve production build
+- `npm run lint` - ESLint
 
 ## Site map
 
-- `/` — Homepage
+- `/` - Homepage
 - `/about` · `/services` · `/services/[slug]` · `/approach` · `/partners` · `/clients` · `/clients/[slug]`
-- `/risk-review` — primary conversion form
-- `/privacy` · `/terms` — placeholder legal pages
+- `/risk-review` - primary conversion form
+- `/privacy` · `/terms` - placeholder legal pages

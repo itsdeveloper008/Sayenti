@@ -34,7 +34,7 @@ export const services: Service[] = [
     description:
       "24/7 SOC monitoring, detection, and incident response tailored to regulated environments.",
     longDescription:
-      "Sayenti operates as an extension of your security team — continuous monitoring, rapid containment, and clear reporting that satisfies both technical stakeholders and auditors.",
+      "Sayenti operates as an extension of your security team - continuous monitoring, rapid containment, and clear reporting that satisfies both technical stakeholders and auditors.",
     whoFor: [
       "Organisations without a 24/7 SOC",
       "Regulated firms needing demonstrable monitoring controls",
@@ -54,7 +54,7 @@ export const services: Service[] = [
       },
       {
         title: "Monitor & detect",
-        body: "Continuous SOC coverage with tuned alerts — signal over noise.",
+        body: "Continuous SOC coverage with tuned alerts - signal over noise.",
       },
       {
         title: "Respond & report",
@@ -75,7 +75,7 @@ export const services: Service[] = [
     description:
       "Secure, staged migrations to Azure and AWS with compliance kept intact.",
     longDescription:
-      "We migrate workloads with security architecture first — identity, network boundaries, logging, and data residency — so you land in the cloud stronger than you left on-prem.",
+      "We migrate workloads with security architecture first - identity, network boundaries, logging, and data residency - so you land in the cloud stronger than you left on-prem.",
     whoFor: [
       "Teams modernising legacy infrastructure",
       "Firms under board pressure to reduce data-centre risk",
@@ -157,7 +157,7 @@ export const services: Service[] = [
     description:
       "Advisory, hardening, and assurance for boards that need certainty.",
     longDescription:
-      "From gap assessments to control implementation, we help you close risk that matters — prioritised by likelihood, impact, and regulatory expectation.",
+      "From gap assessments to control implementation, we help you close risk that matters - prioritised by likelihood, impact, and regulatory expectation.",
     whoFor: [
       "CISOs preparing for audits or board reviews",
       "Firms maturing from reactive to proactive security",

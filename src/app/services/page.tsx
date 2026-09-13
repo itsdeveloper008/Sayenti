@@ -24,7 +24,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Four capabilities. One operating model."
-        description="Whether you need a full MSSP, a secure cloud move, resilient connectivity, or targeted cybersecurity — we design and run it as a coherent system."
+        description="Whether you need a full MSSP, a secure cloud move, resilient connectivity, or targeted cybersecurity - we design and run it as a coherent system."
       />
 
       <section className="container-page pb-20 md:pb-28">
@@ -158,7 +158,7 @@ export default function ServicesPage() {
           <SectionHeading
             eyebrow="One operating model"
             title="Every capability runs the same path"
-            description="However the engagement starts, the delivery rhythm is identical — so evidence, escalation, and reporting stay consistent across services."
+            description="However the engagement starts, the delivery rhythm is identical - so evidence, escalation, and reporting stay consistent across services."
           />
           <Stagger className="grid gap-4 md:grid-cols-4">
             {approachSteps.map((step, i) => (

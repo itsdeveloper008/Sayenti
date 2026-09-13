@@ -56,7 +56,7 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-[min(92vh,920px)] overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
-      {/* Full-bleed silk hero — priority for LCP */}
+      {/* Full-bleed silk hero - priority for LCP */}
       <div className="pointer-events-none absolute inset-0 z-0" data-cursor="scene">
         <Image
           src="/hero.png"

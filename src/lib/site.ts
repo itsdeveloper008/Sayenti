@@ -16,7 +16,7 @@ export const siteConfig = {
 /**
  * Single source of truth for the brand mark.
  * Swapping the artwork only requires changing `src` (any aspect ratio, any
- * format) — every placement scales it to fit its box without cropping.
+ * format) - every placement scales it to fit its box without cropping.
  */
 export const brandLogo = {
   src: "/brand-logo.png",

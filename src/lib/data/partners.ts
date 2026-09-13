@@ -4,7 +4,7 @@ export type TechPartner = {
   href: string;
 };
 
-/** Vendor logos in /public/partners — displayed in brand colors */
+/** Vendor logos in /public/partners - displayed in brand colors */
 export const techPartners: TechPartner[] = [
   {
     name: "Zscaler",

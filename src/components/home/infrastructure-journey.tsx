@@ -238,13 +238,13 @@ export function InfrastructureJourney() {
             </h2>
             <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-slate-500 md:text-base">
               {isLg
-                ? "Scroll to assemble the path from users to data — with security layers activating as the architecture builds."
+                ? "Scroll to assemble the path from users to data - with security layers activating as the architecture builds."
                 : "Tap a layer to see how security activates from users to data."}
             </p>
           </div>
 
           <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:items-center lg:gap-14 xl:gap-16">
-            {/* Left — layer index */}
+            {/* Left - layer index */}
             <div className="lg:col-span-5">
               <div className="relative mt-1">
                 <div className="mb-5 flex justify-center lg:justify-start">
@@ -330,7 +330,7 @@ export function InfrastructureJourney() {
               </div>
             </div>
 
-            {/* Right — media canvas */}
+            {/* Right - media canvas */}
             <div className="lg:col-span-7">
               <div
                 id="infra-media-panel"

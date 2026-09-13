@@ -114,14 +114,14 @@ export function Security247Section() {
               Your security doesn&apos;t clock out.
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed md:text-lg">
-              A continuous operating cycle — monitor, detect, investigate,
-              contain, respond, resolve — around the clock.
+              A continuous operating cycle - monitor, detect, investigate,
+              contain, respond, resolve - around the clock.
             </p>
           </div>
         </ScrollReveal>
 
         <div className="grid items-stretch gap-5 lg:grid-cols-12 lg:gap-6">
-          {/* Featured — ~58% width, stronger presence */}
+          {/* Featured - ~58% width, stronger presence */}
           <motion.div
             className="relative overflow-hidden rounded-2xl border border-black/[0.06] bg-white p-8 shadow-lg sm:p-10 lg:col-span-7 lg:row-span-1 lg:min-h-[520px] lg:p-11"
             initial={reduce ? false : { opacity: 0, scale: 0.96, y: 18 }}
@@ -158,7 +158,7 @@ export function Security247Section() {
                     24/7
                   </p>
                   <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground md:text-[15px]">
-                    Always-on coverage across the full response chain — not a
+                    Always-on coverage across the full response chain - not a
                     ticket queue that waits until morning.
                   </p>
                 </div>
@@ -211,7 +211,7 @@ export function Security247Section() {
             </div>
           </motion.div>
 
-          {/* Stage cards — 5 cols, 2-up */}
+          {/* Stage cards - 5 cols, 2-up */}
           <div className="grid gap-4 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-2 lg:gap-4">
             {securityStages.map((stage, i) => {
               const Icon = stageIcons[i];

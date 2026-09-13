@@ -26,7 +26,7 @@ const INDUSTRY_TAGS = [
 ] as const;
 
 const PROOF_QUOTE = {
-  text: "Containment dropped from hours to under twenty minutes — and our auditors finally had continuous evidence, not quarterly theatre.",
+  text: "Containment dropped from hours to under twenty minutes - and our auditors finally had continuous evidence, not quarterly theatre.",
   attribution: "CISO, National Law Firm",
 };
 
@@ -230,7 +230,7 @@ export function ProofBento() {
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
-      {/* Featured — Finance */}
+      {/* Featured - Finance */}
       <div className="md:col-span-2 lg:col-span-6">
         <CaseCard
           {...finance}

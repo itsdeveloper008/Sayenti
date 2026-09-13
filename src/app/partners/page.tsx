@@ -51,7 +51,7 @@ export default function PartnersPage() {
     <>
       <PageHero
         eyebrow="Partners"
-        title="Alliances that strengthen delivery — not decorate a slide."
+        title="Alliances that strengthen delivery - not decorate a slide."
         description="We partner with platforms and frameworks that matter for regulated UK organisations: detection, cloud, networking, and assurance."
       />
 
@@ -63,7 +63,7 @@ export default function PartnersPage() {
           <SectionHeading
             eyebrow="Capability coverage"
             title="What each alliance actually does for you"
-            description="Partnerships are selected to close specific control gaps — and they are only used where they beat what you already own."
+            description="Partnerships are selected to close specific control gaps - and they are only used where they beat what you already own."
           />
           <Stagger className="grid gap-5 md:grid-cols-2">
             {capabilities.map((cap) => (
@@ -137,7 +137,7 @@ export default function PartnersPage() {
 
           <Reveal delay={0.1}>
             <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Certificates and scope statements are shared during procurement —
+              Certificates and scope statements are shared during procurement - 
               ask for the evidence pack in your risk review and we will bring it
               to the call.
             </p>

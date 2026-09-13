@@ -70,7 +70,7 @@ export const partners: Partner[] = [
 export const approachSteps = [
   {
     title: "Assess",
-    body: "Map assets, threats, compliance obligations, and operational reality — not a template checklist.",
+    body: "Map assets, threats, compliance obligations, and operational reality - not a template checklist.",
   },
   {
     title: "Architect",

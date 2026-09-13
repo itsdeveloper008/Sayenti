@@ -131,7 +131,7 @@
     @apply inline-flex items-center justify-center gap-2 font-mono text-[11px] font-semibold tracking-[0.2em] text-foreground/70 uppercase;
   }
 
-  /* Single deliberate accent — red micro-dot */
+  /* Single deliberate accent - red micro-dot */
   .eyebrow-dot {
     @apply size-1.5 shrink-0 rounded-full bg-primary;
   }

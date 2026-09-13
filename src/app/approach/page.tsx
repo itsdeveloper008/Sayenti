@@ -118,45 +118,47 @@ export default function ApproachPage() {
           description="Targets published up front, measured monthly, and reported with the evidence behind them."
         />
         <Reveal>
-          <div className="overflow-hidden rounded-2xl border border-black/[0.07] bg-white shadow-[0_1px_2px_rgb(10_10_10_/_0.04)]">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="border-b border-black/[0.07] bg-surface-elevated">
-                  <th className="px-6 py-4 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">
-                    Commitment
-                  </th>
-                  <th className="px-6 py-4 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">
-                    Target
-                  </th>
-                  <th className="hidden px-6 py-4 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase sm:table-cell">
-                    Accountable
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {commitments.map((row) => (
-                  <tr
-                    key={row.commitment}
-                    className="border-b border-black/[0.05] last:border-0 transition-colors hover:bg-surface-elevated/60"
-                  >
-                    <td className="px-6 py-4 text-sm text-foreground">
-                      {row.commitment}
-                    </td>
-                    <td
-                      className={cn(
-                        "px-6 py-4 font-mono text-sm font-medium",
-                        row.highlight ? "text-primary" : "text-foreground"
-                      )}
-                    >
-                      {row.target}
-                    </td>
-                    <td className="hidden px-6 py-4 text-sm text-muted-foreground sm:table-cell">
-                      {row.owner}
-                    </td>
+          <div className="-mx-5 overflow-x-auto px-5 sm:mx-0 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-black/[0.07] sm:bg-white sm:px-0 sm:shadow-[0_1px_2px_rgb(10_10_10_/_0.04)]">
+            <div className="min-w-[28rem] overflow-hidden rounded-2xl border border-black/[0.07] bg-white shadow-[0_1px_2px_rgb(10_10_10_/_0.04)] sm:min-w-0 sm:rounded-none sm:border-0 sm:shadow-none">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="border-b border-black/[0.07] bg-surface-elevated">
+                    <th className="px-3 py-3 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase sm:px-6 sm:py-4">
+                      Commitment
+                    </th>
+                    <th className="px-3 py-3 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase sm:px-6 sm:py-4">
+                      Target
+                    </th>
+                    <th className="hidden px-6 py-4 font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase sm:table-cell">
+                      Accountable
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {commitments.map((row) => (
+                    <tr
+                      key={row.commitment}
+                      className="border-b border-black/[0.05] last:border-0 transition-colors hover:bg-surface-elevated/60"
+                    >
+                      <td className="px-3 py-3 text-sm text-foreground sm:px-6 sm:py-4">
+                        {row.commitment}
+                      </td>
+                      <td
+                        className={cn(
+                          "px-3 py-3 font-mono text-sm font-medium whitespace-nowrap sm:px-6 sm:py-4",
+                          row.highlight ? "text-primary" : "text-foreground"
+                        )}
+                      >
+                        {row.target}
+                      </td>
+                      <td className="hidden px-6 py-4 text-sm text-muted-foreground sm:table-cell">
+                        {row.owner}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </Reveal>
         <p className="mt-4 text-xs text-muted-foreground">

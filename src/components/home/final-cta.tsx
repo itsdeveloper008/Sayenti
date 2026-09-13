@@ -68,7 +68,7 @@ export function FinalCtaSection() {
             No obligation. No sales pitch. Just a clear picture of your risk.
           </p>
 
-          <div className="mt-11 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-11 flex w-full flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <MagneticButton
               href="/risk-review"
               className="bg-white text-[#0A0A0A] shadow-[0_1px_2px_rgb(0_0_0_/_0.3)] hover:bg-white/92 hover:shadow-[0_12px_36px_rgb(255_255_255_/_0.18)]"

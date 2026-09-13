@@ -51,7 +51,7 @@ export function MagneticButton({
   }
 
   return (
-    <motion.div style={{ x: springX, y: springY }} className="inline-flex">
+    <motion.div style={{ x: springX, y: springY }} className="inline-flex w-full sm:w-auto">
       <Link
         ref={ref}
         href={href}
@@ -59,7 +59,7 @@ export function MagneticButton({
         onPointerLeave={onLeave}
         className={cn(
           buttonVariants({ size: "lg" }),
-          "group relative h-11 gap-2 overflow-hidden rounded-full px-7 text-[14px] font-medium transition-[box-shadow,background-color,border-color,transform] duration-300",
+          "group relative h-11 w-full gap-2 overflow-hidden rounded-full px-5 text-[14px] font-medium whitespace-normal sm:w-auto sm:px-7 sm:whitespace-nowrap transition-[box-shadow,background-color,border-color,transform] duration-300",
           variant === "primary"
             ? "bg-foreground text-background shadow-[0_1px_2px_rgb(10_10_10_/_0.12)] hover:-translate-y-0.5 hover:bg-foreground/90 hover:shadow-[0_8px_24px_rgb(10_10_10_/_0.14)]"
             : "border border-black/10 bg-transparent text-foreground hover:-translate-y-0.5 hover:border-black/20 hover:bg-white/60",

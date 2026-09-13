@@ -23,7 +23,7 @@ export function TestimonialBlock({
 }) {
   return (
     <Reveal>
-      <figure className="relative overflow-hidden rounded-3xl border border-black/[0.07] bg-white p-8 shadow-[0_18px_50px_rgb(10_10_10_/_0.06)] sm:p-12 md:p-14">
+      <figure className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-6 shadow-[0_18px_50px_rgb(10_10_10_/_0.06)] sm:rounded-3xl sm:p-12 md:p-14">
         {/* Texture + restrained accent glow */}
         <div
           aria-hidden

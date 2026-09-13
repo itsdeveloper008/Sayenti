@@ -128,7 +128,7 @@ export function Navbar() {
     createPortal(
       <AnimatePresence>
         <motion.div
-          className="fixed inset-0 z-[60] md:hidden"
+            className="fixed inset-0 z-[60] lg:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -141,7 +141,7 @@ export function Navbar() {
             onClick={closeAll}
           />
           <motion.div
-            className="absolute inset-x-4 top-[84px] max-h-[calc(100vh-104px)] overflow-y-auto rounded-3xl border border-white/10 bg-black/90 p-3 shadow-[0_24px_80px_rgb(0_0_0_/_0.4)] backdrop-blur-xl"
+            className="absolute inset-x-3 top-[4.75rem] max-h-[min(70dvh,calc(100dvh-5.5rem))] overflow-y-auto rounded-3xl border border-white/10 bg-black/90 p-3 shadow-[0_24px_80px_rgb(0_0_0_/_0.4)] backdrop-blur-xl sm:inset-x-4 sm:top-[84px]"
             initial={{ opacity: 0, y: -12, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}
@@ -253,7 +253,7 @@ export function Navbar() {
 
           {/* 2. Primary nav — desktop */}
           <div
-            className="absolute top-0 left-1/2 hidden -translate-x-1/2 md:block"
+            className="absolute top-0 left-1/2 hidden -translate-x-1/2 lg:block"
             onPointerLeave={() => setHovered(null)}
           >
             <nav
@@ -421,7 +421,7 @@ export function Navbar() {
           {/* 3. Actions — desktop */}
           <div
             className={cn(
-              "hidden items-center gap-1.5 px-1.5 transition-[height] duration-300 ease-out md:flex",
+              "hidden items-center gap-1.5 px-1.5 transition-[height] duration-300 ease-out lg:flex",
               barHeight,
               darkPill,
               lift,
@@ -451,7 +451,7 @@ export function Navbar() {
           <button
             type="button"
             className={cn(
-              "inline-flex aspect-square items-center justify-center transition-[height] duration-300 ease-out md:hidden",
+              "inline-flex aspect-square items-center justify-center transition-[height] duration-300 ease-out lg:hidden",
               barHeight,
               darkPill,
               lift

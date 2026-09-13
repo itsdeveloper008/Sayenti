@@ -152,10 +152,10 @@ export function RiskReviewForm() {
           </Button>
           <a
             href={`mailto:${siteConfig.email}`}
-            className="inline-flex h-9 items-center gap-2 rounded-full border border-black/10 px-4 text-sm font-medium text-foreground hover:bg-white/60"
+            className="inline-flex h-9 max-w-full items-center gap-2 truncate rounded-full border border-black/10 px-4 text-sm font-medium text-foreground hover:bg-white/60"
           >
-            <Mail className="size-4" aria-hidden />
-            {siteConfig.email}
+            <Mail className="size-4 shrink-0" aria-hidden />
+            <span className="truncate">{siteConfig.email}</span>
           </a>
         </div>
       </div>

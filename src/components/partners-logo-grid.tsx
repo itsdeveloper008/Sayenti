@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { techPartners } from "@/lib/data/partners";
 import { cn } from "@/lib/utils";
 
-const COLS = 5;
-
 export function PartnersLogoGrid({
   className,
   eyebrow = "Trusted technology partners",
@@ -14,15 +12,11 @@ export function PartnersLogoGrid({
   className?: string;
   eyebrow?: string;
 }) {
-  const columns = Array.from({ length: COLS }, (_, col) =>
-    techPartners.filter((_, i) => i % COLS === col)
-  );
-
   return (
     <section className={cn("section-space bg-background", className)}>
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="container-page">
         <motion.p
-          className="eyebrow mb-12 justify-center sm:mb-14"
+          className="eyebrow mb-10 justify-center sm:mb-12 md:mb-14"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
@@ -32,54 +26,31 @@ export function PartnersLogoGrid({
           {eyebrow}
         </motion.p>
 
-        <div
-          className="mx-auto w-full"
-          style={{
-            maskImage:
-              "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
-          }}
-        >
-          <div className="flex justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-            {columns.map((colLogos, col) => (
-              <div
-                key={col}
-                className={cn(
-                  "flex flex-1 flex-col items-center gap-3 sm:gap-4 md:gap-5",
-                  col % 2 === 1 && "mt-8 sm:mt-12 md:mt-16"
-                )}
-              >
-                {colLogos.map((partner, row) => {
-                  const index = row * COLS + col;
-                  return (
-                    <motion.div
-                      key={partner.name}
-                      initial={{ opacity: 0, y: 16, scale: 0.96 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: true, margin: "-20px" }}
-                      transition={{
-                        duration: 0.45,
-                        delay: index * 0.04,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                      whileHover={{ y: -4 }}
-                      className="flex aspect-square w-full max-w-[180px] items-center justify-center rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-[0_12px_32px_rgb(10_10_10_/_0.08)] sm:p-6 md:max-w-[200px] md:p-7 lg:max-w-[220px]"
-                    >
-                      <Image
-                        src={partner.src}
-                        alt={partner.name}
-                        width={160}
-                        height={80}
-                        unoptimized
-                        className="h-auto max-h-[72%] w-[78%] object-contain"
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 lg:gap-5">
+          {techPartners.map((partner, index) => (
+            <motion.div
+              key={partner.name}
+              initial={{ opacity: 0, y: 16, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{
+                duration: 0.4,
+                delay: Math.min(index * 0.03, 0.35),
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ y: -4 }}
+              className="flex aspect-[5/4] w-full items-center justify-center rounded-2xl border border-black/[0.06] bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-[0_12px_32px_rgb(10_10_10_/_0.08)] sm:aspect-square sm:p-5 md:p-6"
+            >
+              <Image
+                src={partner.src}
+                alt={partner.name}
+                width={160}
+                height={80}
+                unoptimized
+                className="h-auto max-h-[70%] w-[80%] object-contain"
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -74,9 +74,14 @@ export function HeroSection() {
       <div className="container-page relative z-10 flex min-h-[calc(min(92vh,920px)-11rem)] flex-col justify-center">
         <div className="max-w-xl md:max-w-[34rem]">
           <FadeUp delay={reduce ? 0 : 0.1}>
-            <p className="mb-8 inline-flex items-center gap-2 font-mono text-[10px] font-medium tracking-[0.22em] text-muted-foreground uppercase">
-              <span className="size-1.5 shrink-0 rounded-full bg-foreground/40" />
-              MSSP · Cloud Migration · Superfast Connectivity · Cybersecurity
+            <p className="mb-6 max-w-full font-mono text-[10px] font-medium tracking-[0.14em] text-muted-foreground uppercase sm:mb-8 sm:tracking-[0.18em]">
+              <span className="mb-1.5 inline-flex items-center gap-2 sm:mb-0">
+                <span className="size-1.5 shrink-0 rounded-full bg-foreground/40" />
+                <span className="sm:hidden">MSSP · Cloud · Connectivity · Cyber</span>
+                <span className="hidden sm:inline">
+                  MSSP · Cloud Migration · Superfast Connectivity · Cybersecurity
+                </span>
+              </span>
             </p>
           </FadeUp>
 
@@ -99,7 +104,7 @@ export function HeroSection() {
 
           <FadeUp
             delay={reduce ? 0.1 : 0.85}
-            className="mt-10 flex flex-wrap items-center gap-3"
+            className="mt-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center"
           >
             <span data-cursor="button">
               <MagneticButton href="/risk-review">

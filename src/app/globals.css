@@ -68,12 +68,14 @@
 
   html {
     @apply scroll-smooth font-sans;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01" on, "cv11" on;
     letter-spacing: -0.011em;
+    overflow-x: clip;
   }
 
   h1,
@@ -114,7 +116,7 @@
   }
 
   .section-space {
-    @apply py-28 md:py-36 lg:py-40;
+    @apply py-16 sm:py-20 md:py-32 lg:py-40;
   }
 
   .bento-card {

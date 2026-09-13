@@ -66,9 +66,12 @@ export default function ServicesPage() {
                 {featured.longDescription}
               </p>
 
-              <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-black/[0.06] pt-6">
+              <dl className="mt-8 grid grid-cols-1 gap-4 border-t border-black/[0.06] pt-6 sm:grid-cols-3">
                 {featured.outcomes.map((o, i) => (
-                  <div key={o.label}>
+                  <div
+                    key={o.label}
+                    className="flex items-baseline justify-between gap-3 sm:block"
+                  >
                     <dd
                       className={cn(
                         "font-mono text-lg font-semibold tracking-tight",
@@ -77,7 +80,7 @@ export default function ServicesPage() {
                     >
                       {o.value}
                     </dd>
-                    <dt className="mt-1 text-[11px] leading-snug text-muted-foreground">
+                    <dt className="text-[11px] leading-snug text-muted-foreground sm:mt-1">
                       {o.label}
                     </dt>
                   </div>
@@ -96,7 +99,7 @@ export default function ServicesPage() {
         </Reveal>
 
         {/* Remaining services */}
-        <Stagger className="mt-6 grid gap-6 md:grid-cols-3">
+        <Stagger className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((service, i) => (
             <StaggerItem key={service.slug} className="h-full">
               <Link

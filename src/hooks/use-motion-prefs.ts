@@ -53,3 +53,18 @@ export function useIsDesktopPointer() {
 
   return desktop;
 }
+
+/** True at Tailwind `lg` and up (1024px). */
+export function useIsLgUp() {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setMatches(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return matches;
+}

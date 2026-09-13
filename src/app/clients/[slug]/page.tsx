@@ -190,7 +190,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </Link>
           <Link
             href={`/clients/${next.slug}`}
-            className="group inline-flex items-center gap-3 rounded-2xl border border-black/[0.07] bg-white px-5 py-4 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgb(10_10_10_/_0.08)] sm:min-w-80"
+            className="group inline-flex w-full items-center gap-3 rounded-2xl border border-black/[0.07] bg-white px-5 py-4 transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgb(10_10_10_/_0.08)] sm:w-auto sm:max-w-sm"
           >
             <span className="flex-1 text-right">
               <span className="block font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">

@@ -16,7 +16,7 @@ import {
   useSpring,
 } from "framer-motion";
 import { infrastructureLayers } from "@/lib/data/motion-content";
-import { usePrefersReducedMotion } from "@/hooks/use-motion-prefs";
+import { useIsLgUp, usePrefersReducedMotion } from "@/hooks/use-motion-prefs";
 import { cn } from "@/lib/utils";
 
 const LAYER_COUNT = infrastructureLayers.length;
@@ -130,6 +130,7 @@ function MediaCanvas({
 
 export function InfrastructureJourney() {
   const reduce = usePrefersReducedMotion();
+  const isLg = useIsLgUp();
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const [clickLock, setClickLock] = useState(false);
@@ -148,7 +149,7 @@ export function InfrastructureJourney() {
   });
 
   useMotionValueEvent(smooth, "change", (v) => {
-    if (clickLock) return;
+    if (!isLg || clickLock) return;
     const idx = Math.min(
       LAYER_COUNT - 1,
       Math.max(0, Math.floor(v * LAYER_COUNT))
@@ -159,6 +160,8 @@ export function InfrastructureJourney() {
   const selectStep = useCallback(
     (index: number) => {
       setActive(index);
+      if (!isLg) return;
+
       setClickLock(true);
       if (lockTimer.current) clearTimeout(lockTimer.current);
 
@@ -180,7 +183,7 @@ export function InfrastructureJourney() {
         reduce ? 50 : 800
       );
     },
-    [reduce]
+    [isLg, reduce]
   );
 
   useEffect(() => {
@@ -214,11 +217,18 @@ export function InfrastructureJourney() {
     <section
       ref={sectionRef}
       className="relative border-t border-black/[0.05] bg-[#F9FAFB]"
-      style={{ height: `${LAYER_COUNT * 100}vh` }}
+      style={isLg ? { height: `${LAYER_COUNT * 100}vh` } : undefined}
     >
-      <div className="sticky top-0 flex min-h-screen items-center overflow-hidden py-16 md:py-20">
+      <div
+        className={cn(
+          "flex items-center py-16 md:py-20",
+          isLg
+            ? "sticky top-0 min-h-dvh overflow-hidden"
+            : "min-h-0 overflow-visible"
+        )}
+      >
         <div className="container-page w-full">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14 xl:gap-16">
+          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:items-center lg:gap-14 xl:gap-16">
             {/* Left — copy + layer index */}
             <div className="lg:col-span-5">
               <div className="flex items-center justify-between gap-4">
@@ -235,11 +245,12 @@ export function InfrastructureJourney() {
                 How the estate connects.
               </h2>
               <p className="mt-4 max-w-md text-[15px] leading-relaxed text-slate-500 md:text-base">
-                Scroll to assemble the path from users to data — with security
-                layers activating as the architecture builds.
+                {isLg
+                  ? "Scroll to assemble the path from users to data — with security layers activating as the architecture builds."
+                  : "Tap a layer to see how security activates from users to data."}
               </p>
 
-              <div className="relative mt-10">
+              <div className="relative mt-8 lg:mt-10">
                 {/* Progress rail */}
                 <span
                   aria-hidden
@@ -277,7 +288,7 @@ export function InfrastructureJourney() {
                         tabIndex={isActive ? 0 : -1}
                         onClick={() => selectStep(i)}
                         className={cn(
-                          "group flex w-full items-baseline gap-4 rounded-r-lg py-3 pl-5 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/20",
+                          "group flex w-full items-baseline gap-4 rounded-r-lg py-2.5 pl-5 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/20 sm:py-3",
                           isActive
                             ? "opacity-100"
                             : "opacity-40 hover:opacity-75"
@@ -318,7 +329,7 @@ export function InfrastructureJourney() {
               </div>
             </div>
 
-            {/* Right — sticky media canvas */}
+            {/* Right — media canvas */}
             <div className="lg:col-span-7">
               <div
                 id="infra-media-panel"

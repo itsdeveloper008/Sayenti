@@ -84,7 +84,7 @@
   h4 {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
     letter-spacing: -0.04em;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   ::selection {
@@ -128,7 +128,7 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 font-mono text-[10px] font-medium tracking-[0.22em] text-muted-foreground uppercase;
+    @apply inline-flex items-center justify-center gap-2 font-mono text-[11px] font-semibold tracking-[0.2em] text-foreground/70 uppercase;
   }
 
   /* Single deliberate accent — red micro-dot */

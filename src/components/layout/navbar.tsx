@@ -23,7 +23,7 @@ import { services } from "@/lib/data/services";
 import { cn } from "@/lib/utils";
 
 const darkPill =
-  "rounded-full border border-white/10 bg-black/85 text-white backdrop-blur-md";
+  "rounded-full border border-white/25 bg-black/90 text-white shadow-[0_0_0_1px_rgb(255_255_255_/_0.06)] backdrop-blur-md";
 
 const SERVICE_ICONS: Record<string, LucideIcon> = {
   mssp: Radar,
@@ -159,7 +159,7 @@ export function Navbar() {
                     onClick={closeAll}
                     className={cn(
                       "relative flex items-baseline gap-3 rounded-2xl px-4 py-3.5 text-[15px] font-medium transition-colors",
-                      active ? "text-white" : "text-white/55 hover:text-white"
+                      active ? "text-white" : "text-white/80 hover:text-white"
                     )}
                   >
                     {active && (
@@ -242,7 +242,7 @@ export function Navbar() {
             href="/"
             onClick={closeAll}
             className={cn(
-              "inline-flex items-center gap-3 rounded-full border border-black/[0.07] bg-white px-4 transition-[box-shadow,transform,height] duration-300 ease-out hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:px-5",
+              "inline-flex items-center gap-3 rounded-full border border-black/[0.12] bg-white px-4 transition-[box-shadow,transform,height] duration-300 ease-out hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:px-5",
               barHeight,
               logoLift
             )}
@@ -322,8 +322,8 @@ export function Navbar() {
                     aria-haspopup={hasDropdown ? "true" : undefined}
                     aria-expanded={hasDropdown ? dropdown : undefined}
                     className={cn(
-                      "relative z-10 inline-flex h-9 items-center gap-1 rounded-full px-3.5 text-[13px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 lg:px-4",
-                      active ? "text-white" : "text-white/60 hover:text-white"
+                      "relative z-10 inline-flex h-9 items-center gap-1 rounded-full px-3.5 text-[13px] font-semibold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 lg:px-4",
+                      active ? "text-white" : "text-white/80 hover:text-white"
                     )}
                   >
                     {link.label}
@@ -430,7 +430,7 @@ export function Navbar() {
           >
             <a
               href={`mailto:${siteConfig.email}`}
-              className="inline-flex h-9 items-center rounded-full border border-white/20 px-4 text-[13px] font-medium text-white transition-[background-color,border-color] duration-200 hover:border-white/35 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+              className="inline-flex h-9 items-center rounded-full border border-white/35 px-4 text-[13px] font-semibold text-white transition-[background-color,border-color] duration-200 hover:border-white/50 hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
             >
               Contact
             </a>

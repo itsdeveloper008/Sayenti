@@ -38,7 +38,7 @@ export default function HomePage() {
                 <span className="eyebrow-dot" />
                 Regulated environments
               </p>
-              <h2 className="text-3xl font-semibold tracking-[-0.035em] text-foreground sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-[-0.035em] text-foreground sm:text-4xl">
                 Proof from industries that cannot gamble on uptime
               </h2>
               <p className="mt-4 text-muted-foreground leading-relaxed md:text-lg">

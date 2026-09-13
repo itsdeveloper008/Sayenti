@@ -74,9 +74,9 @@ export function HeroSection() {
       <div className="container-page relative z-10 flex min-h-[calc(min(92vh,920px)-11rem)] flex-col justify-center">
         <div className="max-w-xl md:max-w-[34rem]">
           <FadeUp delay={reduce ? 0 : 0.1}>
-            <p className="mb-6 max-w-full font-mono text-[10px] font-medium tracking-[0.14em] text-muted-foreground uppercase sm:mb-8 sm:tracking-[0.18em]">
+            <p className="mb-6 max-w-full font-mono text-[11px] font-semibold tracking-[0.14em] text-foreground/70 uppercase sm:mb-8 sm:tracking-[0.18em]">
               <span className="mb-1.5 inline-flex items-center gap-2 sm:mb-0">
-                <span className="size-1.5 shrink-0 rounded-full bg-foreground/40" />
+                <span className="size-1.5 shrink-0 rounded-full bg-primary" />
                 <span className="sm:hidden">MSSP · Cloud · Connectivity · Cyber</span>
                 <span className="hidden sm:inline">
                   MSSP · Cloud Migration · Superfast Connectivity · Cybersecurity
@@ -86,11 +86,11 @@ export function HeroSection() {
           </FadeUp>
 
           {ready ? (
-            <h1 className="text-[clamp(2.5rem,5.5vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.04em] text-foreground">
+            <h1 className="text-[clamp(2.5rem,5.5vw,4.75rem)] font-bold leading-[1.04] tracking-[-0.04em] text-foreground">
               <HeroHeadline />
             </h1>
           ) : (
-            <h1 className="text-[clamp(2.5rem,5.5vw,4.75rem)] font-semibold leading-[1.04] tracking-[-0.04em] text-foreground opacity-0">
+            <h1 className="text-[clamp(2.5rem,5.5vw,4.75rem)] font-bold leading-[1.04] tracking-[-0.04em] text-foreground opacity-0">
               Your network defended while the office sleeps.
             </h1>
           )}

@@ -9,7 +9,7 @@ export function MetricsSection() {
     <section className="border-y border-black/[0.05] bg-surface-elevated py-20 md:py-24">
       <div className="container-page">
         <ScrollReveal>
-          <p className="eyebrow mb-12">
+          <p className="eyebrow mb-12 w-full justify-center">
             <span className="eyebrow-dot" />
             Operating evidence
           </p>

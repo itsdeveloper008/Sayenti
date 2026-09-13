@@ -95,11 +95,11 @@ export function ServicesSpotlightCarousel() {
       />
 
       <div className="relative z-10 mx-auto mb-12 max-w-6xl px-5 text-center sm:px-6 lg:px-8 md:mb-16">
-        <p className="mb-4 inline-flex items-center justify-center gap-2 font-mono text-[10px] font-medium tracking-[0.22em] text-white/45 uppercase">
+        <p className="mb-4 inline-flex items-center justify-center gap-2 font-mono text-[11px] font-semibold tracking-[0.2em] text-white/75 uppercase">
           <span className="size-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
           Our services
         </p>
-        <h2 className="text-3xl font-semibold tracking-[-0.035em] text-white sm:text-4xl md:text-[2.75rem]">
+        <h2 className="text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl md:text-[2.75rem]">
           Capabilities under continuous defence
         </h2>
       </div>

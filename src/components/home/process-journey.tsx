@@ -102,7 +102,7 @@ export function ProcessJourney() {
             <span className="eyebrow-dot" />
             Process
           </p>
-          <h2 className="text-3xl font-semibold tracking-[-0.035em] text-foreground sm:text-4xl md:text-[2.75rem]">
+          <h2 className="text-3xl font-bold tracking-[-0.035em] text-foreground sm:text-4xl md:text-[2.75rem]">
             From risk to resilience.
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed md:text-lg">

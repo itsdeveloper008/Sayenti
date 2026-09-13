@@ -228,29 +228,30 @@ export function InfrastructureJourney() {
         )}
       >
         <div className="container-page w-full">
+          <div className="mb-10 text-center lg:mb-14">
+            <p className="eyebrow mb-5 w-full justify-center">
+              <span className="eyebrow-dot" />
+              Infrastructure
+            </p>
+            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-[2.75rem] md:tracking-[-0.035em]">
+              How the estate connects.
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-slate-500 md:text-base">
+              {isLg
+                ? "Scroll to assemble the path from users to data — with security layers activating as the architecture builds."
+                : "Tap a layer to see how security activates from users to data."}
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:items-center lg:gap-14 xl:gap-16">
-            {/* Left — copy + layer index */}
+            {/* Left — layer index */}
             <div className="lg:col-span-5">
-              <div className="flex items-center justify-between gap-4">
-                <p className="eyebrow">
-                  <span className="eyebrow-dot" />
-                  Infrastructure
-                </p>
-                <span className="rounded-full border border-black/[0.08] bg-white px-2.5 py-1 font-mono text-[10px] tracking-[0.14em] text-muted-foreground uppercase">
-                  {LAYER_COUNT} layers
-                </span>
-              </div>
-
-              <h2 className="mt-5 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl md:text-[2.75rem] md:tracking-[-0.035em]">
-                How the estate connects.
-              </h2>
-              <p className="mt-4 max-w-md text-[15px] leading-relaxed text-slate-500 md:text-base">
-                {isLg
-                  ? "Scroll to assemble the path from users to data — with security layers activating as the architecture builds."
-                  : "Tap a layer to see how security activates from users to data."}
-              </p>
-
-              <div className="relative mt-8 lg:mt-10">
+              <div className="relative mt-1">
+                <div className="mb-5 flex justify-center lg:justify-start">
+                  <span className="rounded-full border border-black/[0.08] bg-white px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+                    {LAYER_COUNT} layers
+                  </span>
+                </div>
                 {/* Progress rail */}
                 <span
                   aria-hidden

@@ -55,12 +55,12 @@ export function FinalCtaSection() {
 
       <div className="container-page relative text-center">
         <ScrollReveal>
-          <p className="mb-7 inline-flex items-center gap-2 font-mono text-[10px] font-medium tracking-[0.22em] text-white/45 uppercase">
+          <p className="mb-7 inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.2em] text-white/75 uppercase">
             <span className="size-1.5 shrink-0 rounded-full bg-primary" />
             Next step
           </p>
 
-          <h2 className="mx-auto max-w-3xl text-[2rem] leading-[1.08] font-semibold tracking-[-0.04em] text-balance text-white sm:text-5xl md:text-[3.5rem]">
+          <h2 className="mx-auto max-w-3xl text-[2rem] leading-[1.08] font-bold tracking-[-0.04em] text-balance text-white sm:text-5xl md:text-[3.5rem]">
             Let&apos;s make your network harder to question.
           </h2>
 

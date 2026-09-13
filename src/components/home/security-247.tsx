@@ -107,10 +107,10 @@ export function Security247Section() {
         <ScrollReveal>
           <div className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
             <p className="eyebrow mb-5 justify-center">
-              <span className="size-1.5 shrink-0 rounded-full bg-foreground/35" />
+              <span className="eyebrow-dot" />
               Always on
             </p>
-            <h2 className="text-3xl font-semibold tracking-[-0.035em] text-foreground sm:text-4xl md:text-[2.75rem]">
+            <h2 className="text-3xl font-bold tracking-[-0.035em] text-foreground sm:text-4xl md:text-[2.75rem]">
               Your security doesn&apos;t clock out.
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed md:text-lg">

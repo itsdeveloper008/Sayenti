@@ -26,7 +26,7 @@ export function PageHero({
             {eyebrow}
           </p>
         )}
-        <h1 className="max-w-3xl text-3xl font-semibold tracking-[-0.035em] text-balance text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+        <h1 className="max-w-3xl text-3xl font-bold tracking-[-0.035em] text-balance text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
           {title}
         </h1>
         {description && (
@@ -43,7 +43,7 @@ export function SectionHeading({
   eyebrow,
   title,
   description,
-  align = "left",
+  align = "center",
 }: {
   eyebrow?: string;
   title: string;
@@ -63,11 +63,16 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl font-semibold tracking-[-0.035em] text-foreground sm:text-4xl">
+      <h2 className="text-3xl font-bold tracking-[-0.035em] text-foreground sm:text-4xl">
         {title}
       </h2>
       {description && (
-        <p className="mt-4 text-muted-foreground leading-relaxed md:text-lg">
+        <p
+          className={cn(
+            "mt-4 text-muted-foreground leading-relaxed md:text-lg",
+            align === "center" && "mx-auto max-w-xl"
+          )}
+        >
           {description}
         </p>
       )}

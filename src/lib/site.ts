@@ -3,7 +3,8 @@ export const siteConfig = {
   tagline: "Always-on defence for regulated organisations",
   description:
     "UK Managed Security Service Provider delivering 24/7 monitoring, incident response, cloud migration, and high-speed connectivity for finance, healthcare, legal, and public sector.",
-  url: "https://sayenti.co.uk",
+  /** Canonical site URL used for metadata / OG. Override with NEXT_PUBLIC_SITE_URL. */
+  url: "https://sayenti.vercel.app",
   phone: "+44 20 3890 7200",
   phoneHref: "tel:+442038907200",
   email: "hello@sayenti.co.uk",
@@ -21,6 +22,14 @@ export const siteConfig = {
 export const brandLogo = {
   src: "/brand-logo.png",
   alt: `${siteConfig.name} logo`,
+} as const;
+
+/** Open Graph / Twitter share image (1200×630). */
+export const ogImage = {
+  src: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.name} - ${siteConfig.tagline}`,
 } as const;
 
 export const navLinks = [

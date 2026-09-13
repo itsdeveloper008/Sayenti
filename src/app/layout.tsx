@@ -3,11 +3,20 @@ import { Outfit, Syne, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { AppProviders } from "@/components/providers";
-import { siteConfig } from "@/lib/site";
+import { ogImage, siteConfig } from "@/lib/site";
 import "./globals.css";
 
-/** Keep in sync with `brandLogo.src` in `@/lib/site`. */
-const LOGO_SRC = "/brand-logo.png";
+function resolveSiteUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL;
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  return siteConfig.url;
+}
+
+const siteUrl = resolveSiteUrl();
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -34,7 +43,7 @@ const newsreader = Newsreader({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(siteUrl),
   title: {
     default: `${siteConfig.name} | Managed Security for Regulated Industries`,
     template: `%s | ${siteConfig.name}`,
@@ -52,17 +61,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: siteConfig.url,
+    url: siteUrl,
     siteName: siteConfig.name,
-    title: siteConfig.name,
+    title: `${siteConfig.name} | Managed Security for Regulated Industries`,
     description: siteConfig.description,
-    images: [{ url: LOGO_SRC, alt: siteConfig.name }],
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height,
+        alt: ogImage.alt,
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
+    title: `${siteConfig.name} | Managed Security for Regulated Industries`,
     description: siteConfig.description,
-    images: [LOGO_SRC],
+    images: [ogImage.src],
   },
   robots: { index: true, follow: true },
 };
@@ -72,7 +89,7 @@ const jsonLd = {
   "@type": "ProfessionalService",
   name: siteConfig.name,
   description: siteConfig.description,
-  url: siteConfig.url,
+  url: siteUrl,
   telephone: siteConfig.phone,
   email: siteConfig.email,
   address: {

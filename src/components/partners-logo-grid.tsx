@@ -26,20 +26,20 @@ export function PartnersLogoGrid({
           {eyebrow}
         </motion.p>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 lg:gap-5">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-10 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10 lg:gap-y-12">
           {techPartners.map((partner, index) => (
             <motion.div
               key={partner.name}
-              initial={{ opacity: 0, y: 16, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-20px" }}
               transition={{
                 duration: 0.4,
                 delay: Math.min(index * 0.03, 0.35),
                 ease: [0.22, 1, 0.36, 1],
               }}
-              whileHover={{ y: -4 }}
-              className="flex aspect-[5/4] w-full items-center justify-center rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-[0_12px_32px_rgb(10_10_10_/_0.08)] sm:aspect-square sm:p-7 md:p-8"
+              whileHover={{ y: -2, opacity: 1 }}
+              className="flex items-center justify-center opacity-80 transition-opacity duration-200 hover:opacity-100"
             >
               <Image
                 src={partner.src}
@@ -47,7 +47,7 @@ export function PartnersLogoGrid({
                 width={160}
                 height={80}
                 unoptimized
-                className="h-auto max-h-[42%] w-[52%] object-contain"
+                className="h-8 w-auto max-w-[7.5rem] object-contain sm:h-9 sm:max-w-[8.5rem] md:h-10 md:max-w-[9.5rem]"
               />
             </motion.div>
           ))}

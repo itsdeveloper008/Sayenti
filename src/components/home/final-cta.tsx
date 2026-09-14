@@ -57,11 +57,11 @@ export function FinalCtaSection() {
         <ScrollReveal>
           <p className="mb-7 inline-flex items-center gap-2 font-mono text-[11px] font-semibold tracking-[0.2em] text-white/75 uppercase">
             <span className="size-1.5 shrink-0 rounded-full bg-primary" />
-            Next step
+            Next Step
           </p>
 
           <h2 className="mx-auto max-w-3xl text-[2rem] leading-[1.08] font-bold tracking-[-0.04em] text-balance text-white sm:text-5xl md:text-[3.5rem]">
-            Let&apos;s make your network harder to question.
+            Let&apos;s Make Your Network Harder To Question.
           </h2>
 
           <p className="mx-auto mt-6 max-w-md leading-relaxed text-white/55">

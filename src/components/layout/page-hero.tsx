@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cn, titleCase } from "@/lib/utils";
 
 export function PageHero({
   eyebrow,
@@ -27,7 +27,7 @@ export function PageHero({
           </p>
         )}
         <h1 className="max-w-3xl text-3xl font-bold tracking-[-0.035em] text-balance text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
-          {title}
+          {titleCase(title)}
         </h1>
         {description && (
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -64,7 +64,7 @@ export function SectionHeading({
         </p>
       )}
       <h2 className="text-3xl font-bold tracking-[-0.035em] text-foreground sm:text-4xl">
-        {title}
+        {titleCase(title)}
       </h2>
       {description && (
         <p

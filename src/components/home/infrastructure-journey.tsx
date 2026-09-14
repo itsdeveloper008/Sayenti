@@ -1,347 +1,358 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type KeyboardEvent,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useSpring,
-} from "framer-motion";
+  AppWindow,
+  ArrowRight,
+  Check,
+  Cloud,
+  Database,
+  Laptop,
+  Network,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { infrastructureLayers } from "@/lib/data/motion-content";
-import { useIsLgUp, usePrefersReducedMotion } from "@/hooks/use-motion-prefs";
+import { ScrollReveal } from "@/components/motion/reveal-text";
+import { usePrefersReducedMotion } from "@/hooks/use-motion-prefs";
 import { cn } from "@/lib/utils";
 
-const LAYER_COUNT = infrastructureLayers.length;
+const ICONS: LucideIcon[] = [Users, Laptop, Network, Cloud, AppWindow, Database];
+const COUNT = infrastructureLayers.length;
+const STEP_MS = 4200;
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-function MediaCanvas({
-  active,
-  reduce,
-}: {
-  active: number;
-  reduce: boolean;
-}) {
-  const layer = infrastructureLayers[active];
+const pad = (n: number) => String(n).padStart(2, "0");
 
+/* ------------------------------------------------------------------ */
+/* Pipeline                                                            */
+/* ------------------------------------------------------------------ */
+
+function Connector({ lit, reduce }: { lit: boolean; reduce: boolean }) {
   return (
-    <div className="relative">
-      {/* Corner tick marks */}
-      {[
-        "-top-2 -left-2 border-t border-l",
-        "-top-2 -right-2 border-t border-r",
-        "-bottom-2 -left-2 border-b border-l",
-        "-bottom-2 -right-2 border-b border-r",
-      ].map((pos) => (
-        <span
-          key={pos}
-          aria-hidden
-          className={cn("absolute size-4 border-black/15", pos)}
-        />
-      ))}
-
-      <div className="overflow-hidden rounded-3xl border border-black/[0.07] bg-white/70 p-2 shadow-[0_20px_56px_rgb(15_23_42_/_0.1)] backdrop-blur-sm sm:p-2.5">
-        {/* Panel chrome */}
-        <div className="flex items-center justify-between gap-3 px-2.5 pt-1 pb-2.5">
-          <div className="flex items-center gap-2">
-            <span className="relative flex size-1.5">
-              {!reduce && (
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-40" />
-              )}
-              <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
-            </span>
-            <span className="font-mono text-[10px] tracking-[0.16em] text-muted-foreground uppercase">
-              Estate view
-            </span>
-          </div>
-          <span className="font-mono text-[10px] tracking-[0.14em] text-muted-foreground">
-            {String(active + 1).padStart(2, "0")} /{" "}
-            {String(LAYER_COUNT).padStart(2, "0")}
-          </span>
-        </div>
-
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.15rem] bg-slate-200/70">
-          <AnimatePresence mode="sync" initial={false}>
-            <motion.div
-              key={layer.id}
-              className="absolute inset-0"
-              initial={reduce ? false : { opacity: 0, scale: 1.03 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={reduce ? undefined : { opacity: 0, scale: 0.99 }}
-              transition={
-                reduce
-                  ? { duration: 0 }
-                  : { duration: 0.45, ease: [0.22, 1, 0.36, 1] }
-              }
-            >
-              <Image
-                src={layer.image}
-                alt={layer.label}
-                fill
-                sizes="(max-width: 1024px) 100vw, 58vw"
-                className="object-cover"
-                priority={active === 0}
-              />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Caption scrim */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 bg-gradient-to-t from-black/65 via-black/20 to-transparent px-5 pt-20 pb-5">
-            <div>
-              <p className="font-mono text-[10px] tracking-[0.2em] text-white/65 uppercase">
-                Layer {String(active + 1).padStart(2, "0")}
-              </p>
-              <p className="mt-1 text-lg font-semibold tracking-tight text-white">
-                {layer.label}
-              </p>
-            </div>
-            <p className="hidden max-w-[13rem] text-right text-[11px] leading-snug text-white/70 sm:block">
-              {layer.body}
-            </p>
-          </div>
-
-          {/* Segmented progress along the bottom edge */}
-          <div className="absolute inset-x-0 bottom-0 flex gap-px">
-            {infrastructureLayers.map((l, i) => (
-              <span
-                key={l.id}
-                className={cn(
-                  "h-[3px] flex-1 transition-colors duration-500",
-                  i === active
-                    ? "bg-primary"
-                    : i < active
-                      ? "bg-white/55"
-                      : "bg-white/15"
-                )}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+    <div className="relative mt-7 hidden h-px flex-1 md:block" aria-hidden>
+      <span className="absolute inset-0 bg-black/[0.1]" />
+      <motion.span
+        className="absolute inset-y-0 left-0 origin-left bg-foreground"
+        animate={{ scaleX: lit ? 1 : 0 }}
+        style={{ width: "100%" }}
+        transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
+      />
+      {lit && !reduce && (
+        <span className="absolute top-1/2 left-0 size-1.5 -translate-y-1/2 rounded-full bg-primary shadow-[0_0_0_3px_rgba(225,29,46,0.18)] animate-[packet_1.6s_linear_infinite]" />
+      )}
     </div>
   );
 }
 
+function Pipeline({
+  active,
+  onSelect,
+  reduce,
+}: {
+  active: number;
+  onSelect: (i: number) => void;
+  reduce: boolean;
+}) {
+  return (
+    <div
+      role="tablist"
+      aria-label="Infrastructure layers"
+      className="-mx-5 flex snap-x gap-3 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:mx-0 md:items-start md:gap-0 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden"
+    >
+      {infrastructureLayers.map((layer, i) => {
+        const Icon = ICONS[i];
+        const isActive = i === active;
+        const done = i < active;
+        return (
+          <div key={layer.id} className="contents">
+            <button
+              type="button"
+              role="tab"
+              id={`infra-tab-${layer.id}`}
+              aria-selected={isActive}
+              aria-controls="infra-panel"
+              onClick={() => onSelect(i)}
+              className="group flex shrink-0 snap-start flex-col items-center gap-3 focus-visible:outline-none md:w-[6.25rem] lg:w-[7.5rem]"
+            >
+              <span
+                className={cn(
+                  "flex items-center gap-2.5 rounded-full border px-3.5 py-2 transition-all duration-300 md:flex-col md:gap-0 md:rounded-2xl md:border-0 md:bg-transparent md:p-0",
+                  isActive
+                    ? "border-foreground bg-foreground text-background md:bg-transparent md:text-foreground"
+                    : "border-black/[0.1] bg-white text-foreground/70 md:bg-transparent"
+                )}
+              >
+                <span
+                  className={cn(
+                    "flex size-8 items-center justify-center rounded-full transition-all duration-500 md:size-14 md:rounded-2xl md:border md:shadow-sm group-focus-visible:ring-2 group-focus-visible:ring-foreground/20",
+                    isActive
+                      ? "md:border-foreground md:bg-foreground md:text-background md:shadow-[0_14px_34px_rgb(10_10_10_/_0.22)] md:-translate-y-1"
+                      : done
+                        ? "md:border-foreground/60 md:bg-white md:text-foreground"
+                        : "md:border-black/[0.08] md:bg-white md:text-foreground/50 md:group-hover:border-black/25 md:group-hover:text-foreground"
+                  )}
+                >
+                  <Icon className="size-4 md:size-6" strokeWidth={1.6} />
+                </span>
+                <span className="text-sm font-medium md:hidden">{layer.label}</span>
+              </span>
+
+              <span className="hidden text-center md:block">
+                <span
+                  className={cn(
+                    "block font-mono text-[10px] tracking-[0.18em] transition-colors",
+                    isActive ? "text-primary" : "text-muted-foreground/60"
+                  )}
+                >
+                  {pad(i + 1)}
+                </span>
+                <span
+                  className={cn(
+                    "mt-0.5 block text-[15px] font-semibold tracking-tight transition-colors",
+                    isActive || done ? "text-foreground" : "text-muted-foreground"
+                  )}
+                >
+                  {layer.label}
+                </span>
+              </span>
+            </button>
+            {i < COUNT - 1 && <Connector lit={i < active} reduce={reduce} />}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Section                                                             */
+/* ------------------------------------------------------------------ */
+
 export function InfrastructureJourney() {
   const reduce = usePrefersReducedMotion();
-  const isLg = useIsLgUp();
-  const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
-  const [clickLock, setClickLock] = useState(false);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const lockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
-  });
-
-  const smooth = useSpring(scrollYProgress, {
-    stiffness: 140,
-    damping: 32,
-    restDelta: 0.001,
-  });
-
-  useMotionValueEvent(smooth, "change", (v) => {
-    if (!isLg || clickLock) return;
-    const idx = Math.min(
-      LAYER_COUNT - 1,
-      Math.max(0, Math.floor(v * LAYER_COUNT))
-    );
-    setActive((prev) => (prev === idx ? prev : idx));
-  });
-
-  const selectStep = useCallback(
-    (index: number) => {
-      setActive(index);
-      if (!isLg) return;
-
-      setClickLock(true);
-      if (lockTimer.current) clearTimeout(lockTimer.current);
-
-      const el = sectionRef.current;
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const absoluteTop = window.scrollY + rect.top;
-        const scrollable = el.offsetHeight - window.innerHeight;
-        const target =
-          absoluteTop + (scrollable * (index + 0.5)) / LAYER_COUNT;
-        window.scrollTo({
-          top: target,
-          behavior: reduce ? "auto" : "smooth",
-        });
-      }
-
-      lockTimer.current = setTimeout(
-        () => setClickLock(false),
-        reduce ? 50 : 800
-      );
-    },
-    [isLg, reduce]
-  );
+  const [paused, setPaused] = useState(false);
+  const [inView, setInView] = useState(false);
+  const [tick, setTick] = useState(0);
+  const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    return () => {
-      if (lockTimer.current) clearTimeout(lockTimer.current);
-    };
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => setInView(e.isIntersecting),
+      { threshold: 0.3 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
-  const onListKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (
-      e.key !== "ArrowDown" &&
-      e.key !== "ArrowUp" &&
-      e.key !== "Home" &&
-      e.key !== "End"
-    ) {
-      return;
-    }
-    e.preventDefault();
-    let next = active;
-    if (e.key === "ArrowDown") next = Math.min(LAYER_COUNT - 1, active + 1);
-    if (e.key === "ArrowUp") next = Math.max(0, active - 1);
-    if (e.key === "Home") next = 0;
-    if (e.key === "End") next = LAYER_COUNT - 1;
-    selectStep(next);
-    itemRefs.current[next]?.focus();
+  const playing = inView && !paused && !reduce;
+
+  useEffect(() => {
+    if (!playing) return;
+    const id = window.setInterval(
+      () => setActive((a) => (a + 1) % COUNT),
+      STEP_MS
+    );
+    return () => window.clearInterval(id);
+  }, [playing, tick]);
+
+  const select = (i: number) => {
+    setActive(((i % COUNT) + COUNT) % COUNT);
+    setTick((t) => t + 1);
   };
 
-  const railProgress = ((active + 1) / LAYER_COUNT) * 100;
+  const layer = infrastructureLayers[active];
+  const next = infrastructureLayers[(active + 1) % COUNT];
 
   return (
     <section
-      ref={sectionRef}
-      className="relative border-t border-black/[0.05] bg-[#F9FAFB]"
-      style={isLg ? { height: `${LAYER_COUNT * 100}vh` } : undefined}
+      ref={ref}
+      className="section-space relative overflow-hidden border-t border-black/[0.05] bg-background"
     >
       <div
-        className={cn(
-          "flex items-center py-16 md:py-20",
-          isLg
-            ? "sticky top-0 min-h-dvh overflow-hidden"
-            : "min-h-0 overflow-visible"
-        )}
-      >
-        <div className="container-page w-full">
-          <div className="mb-10 text-center lg:mb-14">
-            <p className="eyebrow mb-5 w-full justify-center">
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #0A0A0A 0.85px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
+
+      <div className="container-page relative">
+        <ScrollReveal>
+          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+            <p className="eyebrow mb-5 justify-center">
               <span className="eyebrow-dot" />
               Infrastructure
             </p>
-            <h2 className="mx-auto max-w-2xl text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-[2.75rem] md:tracking-[-0.035em]">
-              How the estate connects.
+            <h2 className="text-3xl font-bold tracking-[-0.035em] text-balance text-foreground sm:text-4xl md:text-[2.75rem]">
+              How The Estate Connects.
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-slate-500 md:text-base">
-              {isLg
-                ? "Scroll to assemble the path from users to data - with security layers activating as the architecture builds."
-                : "Tap a layer to see how security activates from users to data."}
+            <p className="mx-auto mt-5 max-w-2xl text-muted-foreground leading-relaxed md:text-lg">
+              Six layers between a user and your data. Each one is hardened,
+              observed and evidenced - so a weakness in one never becomes a
+              breach in the next.
             </p>
           </div>
+        </ScrollReveal>
 
-          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:items-center lg:gap-14 xl:gap-16">
-            {/* Left - layer index */}
-            <div className="lg:col-span-5">
-              <div className="relative mt-1">
-                <div className="mb-5 flex justify-center lg:justify-start">
-                  <span className="rounded-full border border-black/[0.08] bg-white px-2.5 py-1 font-mono text-[10px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
-                    {LAYER_COUNT} layers
+        <div
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <ScrollReveal delay={0.1}>
+            <Pipeline active={active} onSelect={select} reduce={reduce} />
+          </ScrollReveal>
+
+          <motion.div
+            id="infra-panel"
+            role="tabpanel"
+            aria-labelledby={`infra-tab-${layer.id}`}
+            className="mt-8 overflow-hidden rounded-[1.75rem] border border-black/[0.07] bg-white shadow-[0_24px_70px_rgb(10_10_10_/_0.07)] md:mt-12"
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: EASE }}
+          >
+            <div className="grid lg:grid-cols-12">
+              {/* Media */}
+              <div className="relative aspect-[16/10] lg:col-span-7 lg:aspect-auto lg:min-h-[460px]">
+                <AnimatePresence mode="sync" initial={false}>
+                  <motion.div
+                    key={layer.id}
+                    className="absolute inset-0"
+                    initial={reduce ? false : { opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={reduce ? undefined : { opacity: 0 }}
+                    transition={
+                      reduce ? { duration: 0 } : { duration: 0.6, ease: EASE }
+                    }
+                  >
+                    <Image
+                      src={layer.image}
+                      alt={layer.label}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      className="object-cover"
+                      priority={active === 0}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+
+                <div className="absolute top-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+                  <span className="relative flex size-1.5">
+                    {!reduce && (
+                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-50" />
+                    )}
+                    <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
+                  </span>
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-white/85 uppercase">
+                    Estate view
                   </span>
                 </div>
-                {/* Progress rail */}
-                <span
-                  aria-hidden
-                  className="absolute top-1 bottom-1 left-0 w-px bg-black/[0.08]"
-                />
-                <motion.span
-                  aria-hidden
-                  className="absolute top-1 left-0 w-[2px] bg-foreground"
-                  animate={{ height: `${railProgress}%` }}
-                  transition={{
-                    duration: reduce ? 0 : 0.45,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                />
 
-                <div
-                  role="tablist"
-                  aria-label="Infrastructure layers"
-                  aria-orientation="vertical"
-                  onKeyDown={onListKeyDown}
-                >
-                  {infrastructureLayers.map((layer, i) => {
-                    const isActive = i === active;
-                    return (
-                      <button
-                        key={layer.id}
-                        ref={(el) => {
-                          itemRefs.current[i] = el;
-                        }}
-                        type="button"
-                        role="tab"
-                        id={`infra-tab-${layer.id}`}
-                        aria-selected={isActive}
-                        aria-controls="infra-media-panel"
-                        tabIndex={isActive ? 0 : -1}
-                        onClick={() => selectStep(i)}
-                        className={cn(
-                          "group flex w-full items-baseline gap-4 rounded-r-lg py-2.5 pl-5 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/20 sm:py-3",
-                          isActive
-                            ? "opacity-100"
-                            : "opacity-40 hover:opacity-75"
-                        )}
-                      >
-                        <span
-                          className={cn(
-                            "shrink-0 font-mono text-[10px] tracking-[0.14em] transition-colors duration-300",
-                            isActive ? "text-primary" : "text-slate-400"
-                          )}
+                <div className="absolute inset-x-5 bottom-5">
+                  <p className="font-mono text-[10px] tracking-[0.2em] text-white/60 uppercase">
+                    Layer {pad(active + 1)} / {pad(COUNT)}
+                  </p>
+                  <p className="mt-1 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                    {layer.label}
+                  </p>
+                </div>
+
+                {/* Autoplay progress */}
+                <div className="absolute inset-x-0 bottom-0 h-[3px] bg-white/15">
+                  <motion.span
+                    key={`${active}-${playing}`}
+                    className="block h-full bg-primary"
+                    initial={{ width: playing ? "0%" : "100%" }}
+                    animate={{ width: "100%" }}
+                    transition={{
+                      duration: playing ? STEP_MS / 1000 : 0.2,
+                      ease: "linear",
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Detail */}
+              <div className="flex flex-col p-7 sm:p-10 lg:col-span-5 lg:p-12">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={layer.id}
+                    initial={reduce ? false : { opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={reduce ? undefined : { opacity: 0, y: -8 }}
+                    transition={{ duration: 0.35, ease: EASE }}
+                    className="flex-1"
+                  >
+                    <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+                      {pad(active + 1)} · {layer.label}
+                    </p>
+                    <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground sm:text-[1.75rem]">
+                      {layer.body}
+                    </h3>
+                    <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
+                      {layer.detail}
+                    </p>
+
+                    <p className="mt-8 font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
+                      Controls in place
+                    </p>
+                    <ul className="mt-3 space-y-2.5">
+                      {layer.controls.map((c, i) => (
+                        <motion.li
+                          key={c}
+                          className="flex items-start gap-3 text-sm text-foreground"
+                          initial={reduce ? false : { opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: reduce ? 0 : 0.15 + i * 0.07,
+                            ease: EASE,
+                          }}
                         >
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <span className="min-w-0">
-                          <span
-                            className={cn(
-                              "block text-[15px] tracking-tight transition-colors duration-300",
-                              isActive
-                                ? "font-semibold text-slate-900"
-                                : "font-medium text-slate-400"
-                            )}
-                          >
-                            {layer.label}
+                          <span className="mt-0.5 flex size-4.5 shrink-0 items-center justify-center rounded-full bg-foreground text-background">
+                            <Check className="size-2.5" strokeWidth={3} />
                           </span>
-                          <span
-                            className={cn(
-                              "mt-0.5 block text-sm leading-snug transition-colors duration-300",
-                              isActive ? "text-slate-500" : "text-slate-400"
-                            )}
-                          >
-                            {layer.body}
-                          </span>
-                        </span>
-                      </button>
-                    );
-                  })}
+                          {c}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="mt-9 flex items-center justify-between gap-4 border-t border-black/[0.06] pt-6">
+                  <button
+                    type="button"
+                    onClick={() => select(active - 1)}
+                    className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => select(active + 1)}
+                    className="group inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-[transform,box-shadow] hover:-translate-y-px hover:shadow-[0_10px_28px_rgb(10_10_10_/_0.2)]"
+                  >
+                    Next: {next.label}
+                    <ArrowRight
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  </button>
                 </div>
               </div>
             </div>
-
-            {/* Right - media canvas */}
-            <div className="lg:col-span-7">
-              <div
-                id="infra-media-panel"
-                role="tabpanel"
-                aria-labelledby={`infra-tab-${infrastructureLayers[active].id}`}
-                aria-live="polite"
-              >
-                <MediaCanvas active={active} reduce={reduce} />
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

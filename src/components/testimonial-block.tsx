@@ -12,7 +12,7 @@ export function TestimonialBlock({
   quote,
   author,
   role,
-  eyebrow = "Client evidence",
+  eyebrow = "Client Evidence",
   metrics = DEFAULT_METRICS,
 }: {
   quote: string;

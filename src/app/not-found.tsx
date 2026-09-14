@@ -38,7 +38,7 @@ export default function NotFound() {
         </p>
 
         <h1 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-balance text-foreground sm:text-4xl md:text-5xl">
-          This path is not on the map.
+          This Path Is Not On The Map.
         </h1>
         <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
           The page you requested does not exist or has moved. Pick up the trail

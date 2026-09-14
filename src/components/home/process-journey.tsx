@@ -97,15 +97,15 @@ export function ProcessJourney() {
       />
 
       <div className="container-page relative">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="mx-auto max-w-3xl text-center">
           <p className="eyebrow mb-5 justify-center">
             <span className="eyebrow-dot" />
             Process
           </p>
-          <h2 className="text-3xl font-bold tracking-[-0.035em] text-foreground sm:text-4xl md:text-[2.75rem]">
-            From risk to resilience.
+          <h2 className="text-3xl font-bold tracking-[-0.035em] text-balance text-foreground sm:text-4xl md:text-[2.75rem]">
+            From Risk To Resilience.
           </h2>
-          <p className="mt-5 text-muted-foreground leading-relaxed md:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-muted-foreground leading-relaxed md:text-lg">
             Four phases, one continuous engagement - each with named ownership
             and evidence you can hand to an auditor.
           </p>

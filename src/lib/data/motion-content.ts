@@ -126,36 +126,54 @@ export const infrastructureLayers = [
     id: "users",
     label: "Users",
     body: "Identity-aware access at the edge.",
+    detail:
+      "Every session starts with a verified identity. Access is granted per request, not per network, so a stolen password alone gets nowhere.",
+    controls: ["SSO with phishing-resistant MFA", "Conditional access policies", "Privileged session recording"],
     image: "/infrastructure/users.png",
   },
   {
     id: "endpoints",
     label: "Endpoints",
     body: "Devices monitored for drift and compromise.",
+    detail:
+      "Laptops, servers and mobiles report health continuously. Drift from baseline or suspicious behaviour is isolated before it can spread.",
+    controls: ["EDR with automated isolation", "Patch and configuration baselines", "Device posture checks at login"],
     image: "/infrastructure/endpoints.png",
   },
   {
     id: "network",
     label: "Network",
     body: "Segmented traffic with continuous visibility.",
+    detail:
+      "Segmentation limits how far anything can move. Flow telemetry from every site feeds the SOC, so lateral movement shows up as it happens.",
+    controls: ["Micro-segmentation by system tier", "Dual-path SD-WAN with failover", "Full flow and DNS telemetry"],
     image: "/infrastructure/network.png",
   },
   {
     id: "cloud",
     label: "Cloud",
     body: "Hardened landing zones and control planes.",
+    detail:
+      "Landing zones are built with guardrails on day one. Control-plane activity is logged, alerted and reviewed like any other privileged action.",
+    controls: ["Policy-as-code landing zones", "Control-plane audit logging", "Key and secret lifecycle management"],
     image: "/infrastructure/cloud.png",
   },
   {
     id: "applications",
     label: "Applications",
     body: "Workload protection aligned to business risk.",
+    detail:
+      "Workloads are protected in proportion to what they handle. Matter systems, clinical apps and payment flows get the controls their risk demands.",
+    controls: ["Runtime workload protection", "Vulnerability cadence tied to risk", "API and web-layer monitoring"],
     image: "/infrastructure/applications.png",
   },
   {
     id: "data",
     label: "Data",
     body: "Classification, residency, and access evidence.",
+    detail:
+      "Data is classified, kept where regulation says it must live, and every access is evidenced - so audit becomes a report, not a project.",
+    controls: ["Classification and labelling", "UK residency and encryption at rest", "Access evidence for auditors"],
     image: "/infrastructure/data.png",
   },
 ] as const;

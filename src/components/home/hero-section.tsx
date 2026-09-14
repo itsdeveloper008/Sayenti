@@ -9,14 +9,14 @@ import { usePrefersReducedMotion } from "@/hooks/use-motion-prefs";
 
 function HeroHeadline() {
   const reduce = useReducedMotion();
-  const lines = ["Your network defended", "while the office sleeps"];
+  const lines = ["Your Network Defended", "While The Office Sleeps"];
 
   if (reduce) {
     return (
       <>
-        Your network defended
+        Your Network Defended
         <br />
-        while the office sleeps
+        While The Office Sleeps
         <span className="text-primary">.</span>
       </>
     );
@@ -91,7 +91,7 @@ export function HeroSection() {
             </h1>
           ) : (
             <h1 className="text-[clamp(2.5rem,5.5vw,4.75rem)] font-bold leading-[1.04] tracking-[-0.04em] text-foreground opacity-0">
-              Your network defended while the office sleeps.
+              Your Network Defended While The Office Sleeps.
             </h1>
           )}
 

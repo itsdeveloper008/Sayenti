@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function PartnersLogoGrid({
   className,
-  eyebrow = "Trusted technology partners",
+  eyebrow = "Trusted Technology Partners",
 }: {
   className?: string;
   eyebrow?: string;
@@ -39,7 +39,7 @@ export function PartnersLogoGrid({
                 ease: [0.22, 1, 0.36, 1],
               }}
               whileHover={{ y: -4 }}
-              className="flex aspect-[5/4] w-full items-center justify-center rounded-2xl border border-black/[0.06] bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-[0_12px_32px_rgb(10_10_10_/_0.08)] sm:aspect-square sm:p-5 md:p-6"
+              className="flex aspect-[5/4] w-full items-center justify-center rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm transition-shadow duration-200 hover:shadow-[0_12px_32px_rgb(10_10_10_/_0.08)] sm:aspect-square sm:p-7 md:p-8"
             >
               <Image
                 src={partner.src}
@@ -47,7 +47,7 @@ export function PartnersLogoGrid({
                 width={160}
                 height={80}
                 unoptimized
-                className="h-auto max-h-[70%] w-[80%] object-contain"
+                className="h-auto max-h-[42%] w-[52%] object-contain"
               />
             </motion.div>
           ))}

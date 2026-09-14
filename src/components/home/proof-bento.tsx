@@ -2,263 +2,167 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { caseStudies } from "@/lib/data/clients";
+import { caseStudies, industries } from "@/lib/data/clients";
+import { ScrollReveal } from "@/components/motion/reveal-text";
 import { usePrefersReducedMotion } from "@/hooks/use-motion-prefs";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const pad = (n: number) => String(n).padStart(2, "0");
 
-const IMAGE_BY_SLUG: Record<string, string> = {
-  "regional-bank-soc": "/cases/finance.png",
-  "healthcare-trust-cloud": "/cases/healthcare.png",
-  "law-firm-connectivity": "/cases/legal.png",
-};
-
-const INDUSTRY_TAGS = [
-  { label: "Finance", count: "12 engagements", rotate: -3.5 },
-  { label: "Healthcare", count: "8 engagements", rotate: 2.5 },
-  { label: "Legal", count: "9 engagements", rotate: -1.5 },
-  { label: "Public Sector", count: "6 engagements", rotate: 3.5 },
-  { label: "Finance", count: "Board-ready evidence", rotate: 1.5 },
-  { label: "Healthcare", count: "Zero-downtime migrations", rotate: -2.5 },
-] as const;
-
-const PROOF_QUOTE = {
-  text: "Containment dropped from hours to under twenty minutes - and our auditors finally had continuous evidence, not quarterly theatre.",
-  attribution: "CISO, National Law Firm",
-};
-
-function StatPill({
-  value,
-  label,
-  accent = false,
-}: {
-  value: string;
-  label: string;
-  accent?: boolean;
-}) {
-  return (
-    <span
-      className={cn(
-        "rounded-md border px-2.5 py-1 font-mono text-xs",
-        accent
-          ? "border-primary/25 bg-primary/[0.06] text-foreground"
-          : "border-black/[0.08] bg-white text-foreground"
-      )}
-    >
-      {value}{" "}
-      <span className={accent ? "text-primary/80" : "text-muted-foreground"}>
-        {label}
-      </span>
-    </span>
-  );
-}
-
-function CaseCard({
+function CaseRow({
+  index,
   slug,
   client,
   industry,
   summary,
   results,
-  featured = false,
-  delay = 0,
+  image,
+  meta,
   reduce,
-}: {
-  slug: string;
-  client: string;
-  industry: string;
-  summary: string;
-  results: { label: string; value: string }[];
-  featured?: boolean;
-  delay?: number;
-  reduce: boolean;
-}) {
-  const image = IMAGE_BY_SLUG[slug];
+}: (typeof caseStudies)[number] & { index: number; reduce: boolean }) {
+  const engagement = meta.find((m) => m.label === "Engagement")?.value;
 
   return (
-    <motion.div
-      initial={reduce ? false : { opacity: 0, y: 22 }}
+    <motion.li
+      initial={reduce ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: reduce ? 0 : delay, ease: EASE }}
-      className="h-full"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, ease: EASE }}
+      className="border-t border-black/[0.08] first:border-t-0"
     >
       <Link
         href={`/clients/${slug}`}
-        className={cn(
-          "group flex h-full flex-col overflow-hidden rounded-2xl border bg-white shadow-[0_8px_28px_rgb(10_10_10_/_0.04)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(10_10_10_/_0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20",
-          featured
-            ? "border-black/[0.08] border-l-[3px] border-l-primary"
-            : "border-black/[0.08]"
-        )}
+        className="group grid gap-6 py-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/20 sm:gap-8 md:py-10 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-12"
       >
-        {image && (
-          <div
-            className={cn(
-              "relative w-full overflow-hidden bg-black/[0.03]",
-              featured ? "aspect-[16/9] sm:aspect-[2/1] lg:aspect-[16/7]" : "aspect-[16/10]"
-            )}
-          >
+        {/* Media */}
+        <div className="relative lg:col-span-5">
+          <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-black/[0.03] lg:aspect-[4/3]">
             <Image
               src={image}
               alt=""
               fill
-              sizes={featured ? "(max-width: 1024px) 100vw, 55vw" : "(max-width: 1024px) 100vw, 28vw"}
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              sizes="(max-width: 1024px) 100vw, 42vw"
+              className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
             />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+            <span className="absolute top-4 left-4 rounded-full border border-white/20 bg-black/40 px-2.5 py-1 font-mono text-[10px] tracking-[0.18em] text-white/90 uppercase backdrop-blur-md">
+              {industry}
+            </span>
+            <span className="absolute right-4 bottom-4 flex size-9 items-center justify-center rounded-full bg-white text-foreground opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 translate-x-2">
+              <ArrowUpRight className="size-4" aria-hidden />
+            </span>
           </div>
-        )}
+        </div>
 
-        <div className="flex flex-1 flex-col p-7 sm:p-8">
-          <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-            {industry}
+        {/* Story */}
+        <div className="lg:col-span-4">
+          <p className="flex items-center gap-3 font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
+            <span className="text-foreground">{pad(index + 1)}</span>
+            <span aria-hidden className="h-px w-6 bg-black/15" />
+            {engagement ?? industry}
           </p>
-          <h3 className="mt-2.5 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+          <h3 className="mt-4 text-2xl font-semibold tracking-tight text-foreground sm:text-[1.75rem]">
             {client}
           </h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+          <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
             {summary}
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {results.slice(0, 2).map((r, i) => (
-              <StatPill
-                key={r.label}
-                value={r.value}
-                label={r.label}
-                accent={featured && i === 0}
-              />
-            ))}
-          </div>
-          <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-foreground transition-transform group-hover:translate-x-0.5">
-            View case study <ArrowRight className="size-4" aria-hidden />
+          <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground">
+            <span className="border-b border-transparent transition-colors group-hover:border-foreground">
+              View case study
+            </span>
+            <ArrowRight
+              className="size-4 transition-transform group-hover:translate-x-0.5"
+              aria-hidden
+            />
           </span>
         </div>
+
+        {/* Outcomes */}
+        <dl className="grid grid-cols-3 gap-4 lg:col-span-3 lg:grid-cols-1 lg:gap-0 lg:divide-y lg:divide-black/[0.06] lg:border-l lg:border-black/[0.08] lg:pl-8">
+          {results.map((r, i) => (
+            <div key={r.label} className="lg:py-4 lg:first:pt-0 lg:last:pb-0">
+              <dd
+                className={cn(
+                  "font-mono text-2xl font-semibold tracking-tight sm:text-[1.75rem]",
+                  i === 0 ? "text-primary" : "text-foreground"
+                )}
+              >
+                {r.value}
+              </dd>
+              <dt className="mt-1 text-xs leading-snug text-muted-foreground sm:text-[13px]">
+                {r.label}
+              </dt>
+            </div>
+          ))}
+        </dl>
       </Link>
-    </motion.div>
+    </motion.li>
   );
 }
 
-function TagCloudCard({ delay, reduce }: { delay: number; reduce: boolean }) {
-  return (
-    <motion.div
-      className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-7 shadow-[0_8px_28px_rgb(10_10_10_/_0.04)] sm:p-8"
-      initial={reduce ? false : { opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: reduce ? 0 : delay, ease: EASE }}
-    >
-      <p className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
-        Industries
-      </p>
-      <h3 className="mt-2.5 text-lg font-semibold tracking-tight text-foreground">
-        Where we operate
-      </h3>
-      <p className="mt-2 text-sm text-muted-foreground">
-        Regulated environments that need evidence, not theatre.
-      </p>
-
-      <div className="relative mt-8 flex flex-1 flex-wrap content-center items-center justify-center gap-3 py-4">
-        {INDUSTRY_TAGS.map((tag, i) => (
-          <motion.span
-            key={`${tag.label}-${i}`}
-            className="rounded-full border border-black/[0.1] bg-white px-3.5 py-2 shadow-sm"
-            style={{ rotate: tag.rotate }}
-            initial={
-              reduce
-                ? false
-                : { opacity: 0, scale: 0.9, rotate: 0 }
-            }
-            whileInView={
-              reduce
-                ? undefined
-                : {
-                    opacity: 1,
-                    scale: 1,
-                    rotate: tag.rotate,
-                    transition: {
-                      duration: 0.4,
-                      delay: delay + 0.15 + i * 0.06,
-                      ease: EASE,
-                    },
-                  }
-            }
-            viewport={{ once: true }}
-          >
-            <span className="block text-sm font-medium text-foreground">
-              {tag.label}
-            </span>
-            <span className="mt-0.5 block font-mono text-[10px] tracking-wide text-muted-foreground">
-              {tag.count}
-            </span>
-          </motion.span>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-function QuoteCard({ delay, reduce }: { delay: number; reduce: boolean }) {
-  return (
-    <motion.div
-      className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-7 shadow-[0_8px_28px_rgb(10_10_10_/_0.04)] sm:p-8"
-      initial={reduce ? false : { opacity: 0, y: 22 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay: reduce ? 0 : delay, ease: EASE }}
-    >
-      <span
-        aria-hidden
-        className="font-serif text-6xl leading-none text-primary/90"
-      >
-        “
-      </span>
-      <blockquote className="mt-2 text-base leading-relaxed text-foreground md:text-lg">
-        {PROOF_QUOTE.text}
-      </blockquote>
-      <p className="mt-8 font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
-        {PROOF_QUOTE.attribution}
-      </p>
-    </motion.div>
-  );
-}
-
-export function ProofBento() {
+export function ProofShowcase() {
   const reduce = usePrefersReducedMotion();
-  const [finance, healthcare, legal] = caseStudies;
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
-      {/* Featured - Finance */}
-      <div className="md:col-span-2 lg:col-span-6">
-        <CaseCard
-          {...finance}
-          featured
-          delay={0}
-          reduce={reduce}
-        />
-      </div>
+    <section className="section-space border-t border-black/[0.05] bg-surface-elevated">
+      <div className="container-page">
+        <ScrollReveal>
+          <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+            <p className="eyebrow mb-5 justify-center">
+              <span className="eyebrow-dot" />
+              Regulated Environments
+            </p>
+            <h2 className="text-3xl font-bold tracking-[-0.035em] text-balance text-foreground sm:text-4xl md:text-[2.75rem]">
+              Proof From Industries That Cannot Gamble On Uptime
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-muted-foreground leading-relaxed md:text-lg">
+              Finance, healthcare, legal and public sector outcomes - measured,
+              not marketed.
+            </p>
+          </div>
+        </ScrollReveal>
 
-      {/* Healthcare */}
-      <div className="lg:col-span-3">
-        <CaseCard {...healthcare} delay={0.08} reduce={reduce} />
-      </div>
+        <ScrollReveal delay={0.05}>
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-black/[0.08] pb-5">
+            <p className="font-mono text-[11px] tracking-[0.14em] text-muted-foreground uppercase">
+              {pad(caseStudies.length)} case studies
+            </p>
+            <ul className="flex flex-wrap gap-2">
+              {industries.map((ind) => (
+                <li
+                  key={ind}
+                  className="rounded-full border border-black/[0.08] bg-white px-3 py-1 text-xs font-medium text-foreground/80"
+                >
+                  {ind}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </ScrollReveal>
 
-      {/* Legal */}
-      <div className="lg:col-span-3">
-        <CaseCard {...legal} delay={0.16} reduce={reduce} />
-      </div>
+        <ul>
+          {caseStudies.map((cs, i) => (
+            <CaseRow key={cs.slug} index={i} reduce={reduce} {...cs} />
+          ))}
+        </ul>
 
-      {/* Tag cloud */}
-      <div className="md:col-span-1 lg:col-span-5">
-        <TagCloudCard delay={0.24} reduce={reduce} />
+        <ScrollReveal className="border-t border-black/[0.08] pt-8 text-center">
+          <Link
+            href="/clients"
+            className="group inline-flex items-center gap-2 rounded-full border border-black/[0.1] bg-white px-5 py-2.5 text-sm font-medium text-foreground transition-[transform,box-shadow,border-color] hover:-translate-y-px hover:border-black/20 hover:shadow-[0_10px_28px_rgb(10_10_10_/_0.08)]"
+          >
+            All case studies
+            <ArrowRight
+              className="size-4 transition-transform group-hover:translate-x-0.5"
+              aria-hidden
+            />
+          </Link>
+        </ScrollReveal>
       </div>
-
-      {/* Quote */}
-      <div className="md:col-span-1 lg:col-span-7">
-        <QuoteCard delay={0.32} reduce={reduce} />
-      </div>
-    </div>
+    </section>
   );
 }

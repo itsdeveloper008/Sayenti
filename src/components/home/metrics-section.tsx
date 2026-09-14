@@ -11,7 +11,7 @@ export function MetricsSection() {
         <ScrollReveal>
           <p className="eyebrow mb-12 w-full justify-center">
             <span className="eyebrow-dot" />
-            Operating evidence
+            Operating Evidence
           </p>
         </ScrollReveal>
         <StatStrip stats={homepageMetrics} />

@@ -147,9 +147,22 @@
   .animate-pulse-wave {
     animation: pulse-wave 2.8s linear infinite;
   }
+
+  .animate-logo-marquee {
+    animation: logo-marquee 45s linear infinite;
+  }
 }
 
 @keyframes pulse-wave {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes logo-marquee {
   from {
     transform: translateX(0);
   }
